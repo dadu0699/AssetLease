@@ -3,7 +3,7 @@
 AVLTreeNode::AVLTreeNode(Asset *asset)
 {
 	this->asset = asset;
-	this->height = 0;
+	this->height = 1;
 	leftNode = nullptr;
 	rightNode = nullptr;
 }
