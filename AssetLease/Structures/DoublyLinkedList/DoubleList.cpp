@@ -138,8 +138,8 @@ void DoubleList::report()
             while (auxiliaryNode != nullptr)
             {
                 myfile << "N" << index << " [label =\""
-                       << "Usuario: " << auxiliaryNode->getUser()->getNickname()
-                       << "Nombre: " << auxiliaryNode->getUser()->getName()
+                       << "Usuario: " << auxiliaryNode->getUser()->getNickname() << "\\n"
+                       << "Nombre: " << auxiliaryNode->getUser()->getName() << "\\n"
                        //<< "Contrasena: " << auxiliaryNode->getUser()->getPassword()
                        << "\"];";
                 auxiliaryNode = auxiliaryNode->getNextNode();

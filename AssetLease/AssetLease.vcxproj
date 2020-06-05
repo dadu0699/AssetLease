@@ -141,9 +141,25 @@
   <ItemGroup>
     <ClCompile Include="AssetLease.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="Models\Asset.cpp" />
+    <ClCompile Include="Models\User.cpp" />
+    <ClCompile Include="Structures\AVLTree\AVLTree.cpp" />
+    <ClCompile Include="Structures\AVLTree\AVLTreeNode.cpp" />
+    <ClCompile Include="Structures\DoublyLinkedList\DoubleList.cpp" />
+    <ClCompile Include="Structures\DoublyLinkedList\DoubleNode.cpp" />
+    <ClCompile Include="Structures\SparseMatrix\SparseMatrix.cpp" />
+    <ClCompile Include="Structures\SparseMatrix\SparseMatrixNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Models\Asset.h" />
+    <ClInclude Include="Models\User.h" />
+    <ClInclude Include="Structures\AVLTree\AVLTree.h" />
+    <ClInclude Include="Structures\AVLTree\AVLTreeNode.h" />
+    <ClInclude Include="Structures\DoublyLinkedList\DoubleList.h" />
+    <ClInclude Include="Structures\DoublyLinkedList\DoubleNode.h" />
+    <ClInclude Include="Structures\SparseMatrix\SparseMatrix.h" />
+    <ClInclude Include="Structures\SparseMatrix\SparseMatrixNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

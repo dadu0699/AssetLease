@@ -2,6 +2,7 @@
 #define USER_H
 
 #include <iostream>
+#include "../Structures/AVLTree/AVLTree.h"
 using namespace std;
 
 class User
@@ -10,10 +11,10 @@ private:
 	string nickname;
 	string password;
 	string name;
-	// string assetAVL;
+	AVLTree *assetAVL;
 
 public:
-	User(string nickname, string password, string name/*, string assetAVL*/);
+	User(string nickname, string password, string name);
 	~User();
 
 	string getNickname();
@@ -24,6 +25,8 @@ public:
 
 	string getName();
 	void setName(string name);
+
+	AVLTree *getAssetAVL() const;
 };
 
 #endif // USER_H
