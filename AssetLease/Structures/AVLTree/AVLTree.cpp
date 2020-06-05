@@ -35,7 +35,7 @@ int AVLTree::updateHeight(AVLTreeNode* avlTreeNode)
 int AVLTree::getBalanceFactor(AVLTreeNode *avlTreeNode)
 {
 	if (avlTreeNode != nullptr) {
-		return updateHeight(avlTreeNode->getLeftNode()) - updateHeight(avlTreeNode->getRightNode());
+		return updateHeight(avlTreeNode->getRightNode()) - updateHeight(avlTreeNode->getLeftNode());
 	}
 	return 0;
 }
@@ -89,10 +89,51 @@ AVLTreeNode* AVLTree::rightLeftRotation(AVLTreeNode* avlTreeNode)
 
 void AVLTree::insert(Asset *asset)
 {
+	AVLTreeNode* newNode = new AVLTreeNode(asset);
+	root = insert(newNode, root);
 }
 
 AVLTreeNode *AVLTree::insert(AVLTreeNode *newNode, AVLTreeNode *avlTreeNode)
 {
+	if (avlTreeNode == nullptr) {
+		return newNode;
+	}
+
+	if (newNode->getAsset()->getIdentifier() < avlTreeNode->getAsset()->getIdentifier())
+	{
+		avlTreeNode->setLeftNode(insert(newNode, avlTreeNode->getLeftNode()));
+	}
+	else if (newNode->getAsset()->getIdentifier() > avlTreeNode->getAsset()->getIdentifier())
+	{
+		avlTreeNode->setRightNode(insert(newNode, avlTreeNode->getRightNode()));
+	}
+	else
+	{
+		cout << "Duplicated";
+		return newNode;
+	}
+
+	avlTreeNode->setHeight(1 + max(updateHeight(avlTreeNode->getLeftNode()), updateHeight(avlTreeNode->getRightNode())));
+	int balanceFactor = getBalanceFactor(avlTreeNode);
+
+	if (balanceFactor < 1) {
+		if (newNode->getAsset()->getIdentifier() < avlTreeNode->getLeftNode()->getAsset()->getIdentifier()) {
+			return rightRotation(avlTreeNode);
+		}
+		else if (newNode->getAsset()->getIdentifier() > avlTreeNode->getLeftNode()->getAsset()->getIdentifier()) {
+			return leftRightRotation(avlTreeNode);
+		}
+	}
+	else if (balanceFactor > 1) 
+	{
+		if (newNode->getAsset()->getIdentifier() > avlTreeNode->getRightNode()->getAsset()->getIdentifier()) {
+			return leftRotation(avlTreeNode);
+		}
+		else if (newNode->getAsset()->getIdentifier() < avlTreeNode->getRightNode()->getAsset()->getIdentifier()) {
+			return rightLeftRotation(avlTreeNode);
+		}
+	}
+	return avlTreeNode;
 }
 
 AVLTreeNode* AVLTree::search(string identifier, AVLTreeNode* avlTreeNode)
