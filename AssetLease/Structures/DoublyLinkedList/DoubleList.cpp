@@ -167,13 +167,15 @@ void DoubleList::report()
 
 void DoubleList::readStartNodes()
 {
-    DoubleNode *auxiliaryNode = firstNode;
-    while (auxiliaryNode != nullptr)
-    {
-        cout << auxiliaryNode->getUser()->getNickname() << " <-> ";
-        auxiliaryNode = auxiliaryNode->getNextNode();
+    if (!isEmpty()) {
+        DoubleNode* auxiliaryNode = firstNode;
+        while (auxiliaryNode != nullptr)
+        {
+            cout << auxiliaryNode->getUser()->getNickname() << " <-> ";
+            auxiliaryNode = auxiliaryNode->getNextNode();
+        }
+        cout << endl;
     }
-    cout << endl;
 }
 
 void DoubleList::readEndNodes()

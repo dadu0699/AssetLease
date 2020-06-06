@@ -2,6 +2,7 @@
 #define SPARSEMATRIXNODE_H
 
 #include <iostream>
+#include "../../Structures/DoublyLinkedList/DoubleList.h"
 using namespace std;
 
 class SparseMatrixNode
@@ -10,27 +11,28 @@ private:
 	string xDepartment;
 	string yCorporation;
 	string name;
-	string data;
+	DoubleList *userList;
 	SparseMatrixNode *nextNode;
 	SparseMatrixNode *previousNode;
 	SparseMatrixNode *upNode;
 	SparseMatrixNode *downNode;
 
 public:
-	SparseMatrixNode(string xDepartment, string yCorporation, string name, string data);
+	SparseMatrixNode(string xDepartment, string yCorporation, string name);
+	SparseMatrixNode(string xDepartment, string yCorporation);
 	~SparseMatrixNode();
 
-	int getXDepartment();
+	string getXDepartment();
 	void setXDepartment(string xDepartment);
 
-	int getYCorporation();
+	string getYCorporation();
 	void setYCorporation(string yCorporation);
 
-	int getName();
+	string getName();
 	void setName(string name);
 
-	string getData();
-	void setData(string data);
+	DoubleList *getUserList() const;
+	void setUserList(DoubleList *userList);
 
 	SparseMatrixNode *getNextNode() const;
 	void setNextNode(SparseMatrixNode *nextNode);
@@ -45,4 +47,4 @@ public:
 	void setDownNode(SparseMatrixNode *downNode);
 };
 
-#endif //SPARSEMATRIXNODE_H
+#endif // SPARSEMATRIXNODE_H

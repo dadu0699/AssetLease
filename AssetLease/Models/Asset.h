@@ -10,6 +10,7 @@ private:
 	string identifier;
 	string name;
 	string description;
+	bool lease;
 
 public:
 	Asset(string name, string description);
@@ -23,6 +24,9 @@ public:
 
 	string getDescription();
 	void setDescription(string description);
+
+	bool getLease();
+	void setDescription(bool lease);
 };
 
 #endif // ASSET_H
