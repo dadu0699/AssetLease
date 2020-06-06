@@ -28,6 +28,8 @@ int main() {
     sp->printColumns();
     sp->printRows();
 
+    sp->report();
+
     Menu menu;
     return 0;
 }
