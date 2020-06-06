@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetLease.cpp" />
+    <ClCompile Include="Controllers\IDGenerator.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
     <ClCompile Include="Models\Asset.cpp" />
     <ClCompile Include="Models\User.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Structures\SparseMatrix\SparseMatrixNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Controllers\IDGenerator.h" />
     <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="Models\Asset.h" />
     <ClInclude Include="Models\User.h" />

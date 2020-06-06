@@ -1,8 +1,9 @@
 #include "Asset.h"
+#include "../Controllers/IDGenerator.h"
 
-Asset::Asset(string identifier, string name, string description)
+Asset::Asset(string name, string description)
 {
-	this->identifier = identifier;
+	this->identifier = IDGenerator().getID();
 	this->name = name;
 	this->description = description;
 }

@@ -224,21 +224,38 @@ AVLTreeNode *AVLTree::deleteNode(AVLTreeNode *avlTreeNode, string identifier)
 
 AVLTreeNode *AVLTree::search(string identifier, AVLTreeNode *avlTreeNode)
 {
-	if (isEmpty())
+	if (!isEmpty())
 	{
-		return nullptr;
+		if (identifier < avlTreeNode->getAsset()->getIdentifier())
+		{
+			return search(identifier, avlTreeNode->getLeftNode());
+		}
+		else if (identifier > avlTreeNode->getAsset()->getIdentifier())
+		{
+			return search(identifier, avlTreeNode->getRightNode());
+		}
+		else
+		{
+			return avlTreeNode;
+		}
 	}
-	else if (avlTreeNode->getAsset()->getIdentifier() == identifier)
-	{
-		return avlTreeNode;
-	}
-	else if (avlTreeNode->getAsset()->getIdentifier() < identifier)
-	{
-		return search(identifier, avlTreeNode->getRightNode());
-	}
-	else
-	{
-		return search(identifier, avlTreeNode->getLeftNode());
+	return nullptr;
+}
+
+void AVLTree::inOrder()
+{
+	inOrder(root);
+}
+
+void AVLTree::inOrder(AVLTreeNode *root)
+{
+	if (root != nullptr) {
+		inOrder(root->getLeftNode());
+		cout << "ID = " << root->getAsset()->getIdentifier() << "; " 
+			<< "Nombre = " << root->getAsset()->getName() << "; "
+			<< "Descripcion = " << root->getAsset()->getDescription() << "; "
+			<< endl;
+		inOrder(root->getRightNode());
 	}
 }
 

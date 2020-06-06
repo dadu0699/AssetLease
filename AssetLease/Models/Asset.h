@@ -12,7 +12,7 @@ private:
 	string description;
 
 public:
-	Asset(string identifier, string name, string description);
+	Asset(string name, string description);
 	~Asset();
 
 	string getIdentifier();
