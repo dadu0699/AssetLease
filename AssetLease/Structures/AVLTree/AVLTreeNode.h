@@ -16,6 +16,7 @@ public:
     ~AVLTreeNode();
 
     Asset *getAsset() const;
+    void setAsset(Asset *asset);
 
     int getHeight();
     void setHeight(int height);

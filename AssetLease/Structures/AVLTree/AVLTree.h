@@ -11,27 +11,29 @@ using namespace std;
 class AVLTree
 {
 private:
-    AVLTreeNode* root;
+    AVLTreeNode *root;
     int indexNode;
 
     bool isEmpty();
     int max(int a, int b);
-    int updateHeight(AVLTreeNode* avlTreeNode);
-    int getBalanceFactor(AVLTreeNode* avlTreeNode);
-    AVLTreeNode *nodeWithMinimumValue(AVLTreeNode* avlTreeNode);
+    int updateHeight(AVLTreeNode *avlTreeNode);
+    int getBalanceFactor(AVLTreeNode *avlTreeNode);
+    AVLTreeNode *nodeWithMinimumValue(AVLTreeNode *avlTreeNode);
     AVLTreeNode *leftRotation(AVLTreeNode *avlTreeNode);
     AVLTreeNode *rightRotation(AVLTreeNode *avlTreeNode);
     AVLTreeNode *rightLeftRotation(AVLTreeNode *avlTreeNode);
     AVLTreeNode *leftRightRotation(AVLTreeNode *avlTreeNode);
     AVLTreeNode *insert(AVLTreeNode *newNode, AVLTreeNode *avlTreeNode);
+    AVLTreeNode *deleteNode(AVLTreeNode *avlTreeNode, string identifier);
     string report(AVLTreeNode *root);
 
 public:
     AVLTree();
     ~AVLTree();
 
-    AVLTreeNode *search(string identifier, AVLTreeNode *avlTreeNode);
     void insert(Asset *asset);
+    void deleteNode(string identifier);
+    AVLTreeNode *search(string identifier, AVLTreeNode *avlTreeNode);
     void report();
 };
 

@@ -17,6 +17,11 @@ Asset *AVLTreeNode::getAsset() const
 	return asset;
 }
 
+void AVLTreeNode::setAsset(Asset *asset)
+{
+	this->asset = asset;
+}
+
 int AVLTreeNode::getHeight()
 {
 	return height;
