@@ -4,11 +4,23 @@
 
 #include "Menu/Menu.h"
 #include "Structures/SparseMatrix/SparseMatrix.h"
+#include "Structures/AVLTree/AVLTree.h"
 
 using namespace std;
 
 int main() {
     srand(time(NULL));
+
+    AVLTree *avl = new AVLTree();
+    avl->insert(new Asset("a", ""));
+    avl->insert(new Asset("b", ""));
+    avl->insert(new Asset("c", ""));
+    avl->insert(new Asset("d", ""));
+    avl->insert(new Asset("e", ""));
+    avl->insert(new Asset("f", ""));
+    avl->insert(new Asset("g", ""));
+    avl->insert(new Asset("h", ""));
+    avl->report();
 
     SparseMatrix* sp = new SparseMatrix();
     sp->addNode("Guatemala",    "HP",           new User("U1",   "admin", "Didier"));
@@ -21,14 +33,12 @@ int main() {
     sp->addNode("Huehue",       "Wallmart",     new User("U8",   "admin", "Didier"));
     sp->addNode("Xela",         "Wallmart",     new User("U9",   "admin", "Didier"));
     sp->addNode("Xela",         "HP",           new User("U0",   "admin", "Didier"));
-    
     sp->printColumnHeaders();
     sp->printRowHeaders();
-
     sp->printColumns();
     sp->printRows();
-
     sp->report();
+
 
     Menu menu;
     return 0;

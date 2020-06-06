@@ -3,7 +3,6 @@
 AVLTree::AVLTree()
 {
 	root = nullptr;
-	indexNode = 0;
 }
 
 AVLTree::~AVLTree()
@@ -15,6 +14,15 @@ bool AVLTree::isEmpty()
 	return root == nullptr;
 }
 
+int AVLTree::updateHeight(AVLTreeNode* avlTreeNode)
+{
+	if (avlTreeNode != nullptr)
+	{
+		return avlTreeNode->getHeight();
+	}
+	return 0;
+}
+
 int AVLTree::max(int a, int b)
 {
 	if (a > b)
@@ -24,15 +32,6 @@ int AVLTree::max(int a, int b)
 	return b;
 }
 
-int AVLTree::updateHeight(AVLTreeNode *avlTreeNode)
-{
-	if (avlTreeNode != nullptr)
-	{
-		return avlTreeNode->getHeight();
-	}
-	return 0;
-}
-
 int AVLTree::getBalanceFactor(AVLTreeNode *avlTreeNode)
 {
 	if (avlTreeNode != nullptr)
@@ -40,16 +39,6 @@ int AVLTree::getBalanceFactor(AVLTreeNode *avlTreeNode)
 		return updateHeight(avlTreeNode->getRightNode()) - updateHeight(avlTreeNode->getLeftNode());
 	}
 	return 0;
-}
-
-AVLTreeNode *AVLTree::nodeWithMinimumValue(AVLTreeNode *avlTreeNode)
-{
-	AVLTreeNode *current = avlTreeNode->getRightNode();
-	while (current->getLeftNode() != nullptr)
-	{
-		current = current->getLeftNode();
-	}
-	return current;
 }
 
 AVLTreeNode *AVLTree::leftRotation(AVLTreeNode *avlTreeNode)
@@ -74,9 +63,9 @@ AVLTreeNode *AVLTree::rightRotation(AVLTreeNode *avlTreeNode)
 	return auxiliaryNode;
 }
 
-AVLTreeNode *AVLTree::leftRightRotation(AVLTreeNode *avlTreeNode)
+AVLTreeNode* AVLTree::leftRightRotation(AVLTreeNode* avlTreeNode)
 {
-	AVLTreeNode *auxiliaryNode;
+	AVLTreeNode* auxiliaryNode;
 	avlTreeNode->setLeftNode(leftRotation(avlTreeNode->getLeftNode()));
 	auxiliaryNode = rightRotation(avlTreeNode);
 	return auxiliaryNode;
@@ -148,6 +137,16 @@ AVLTreeNode *AVLTree::insert(AVLTreeNode *newNode, AVLTreeNode *avlTreeNode)
 void AVLTree::deleteNode(string identifier)
 {
 	root = deleteNode(root, identifier);
+}
+
+AVLTreeNode* AVLTree::nodeWithMinimumValue(AVLTreeNode* avlTreeNode)
+{
+	AVLTreeNode* current = avlTreeNode->getRightNode();
+	while (current->getLeftNode() != nullptr)
+	{
+		current = current->getLeftNode();
+	}
+	return current;
 }
 
 AVLTreeNode *AVLTree::deleteNode(AVLTreeNode *avlTreeNode, string identifier)
@@ -266,24 +265,43 @@ string AVLTree::report(AVLTreeNode *root)
 	if (!isEmpty())
 	{
 		int indexParentNode = indexNode;
-		myfile.append("N" + to_string(indexNode) + "[label = \"" + "ID: " + root->getAsset()->getIdentifier() + "\\n" + "Nombre: " + root->getAsset()->getName() + "\\n" + "Descripcion: " + root->getAsset()->getDescription() + "\"]; ");
-
+		myfile.append("N" + to_string(indexNode));
+		myfile.append("[label=\"ID: " + root->getAsset()->getIdentifier() + "\\n");
+		myfile.append("Nombre: " + root->getAsset()->getName() + "\\n");
+		myfile.append("Descripcion: " + root->getAsset()->getDescription() + "\"]; ");
+		
 		if (root->getLeftNode() != nullptr)
 		{
-			indexNode++;
-			int indexLeftNode = indexNode;
-			myfile.append(report(root->getLeftNode()));
-			myfile.append("N" + to_string(indexParentNode) + " -> N" + to_string(indexLeftNode) + "; ");
+			myfile.append(reportLeftNode(root, indexParentNode));
 		}
 
 		if (root->getRightNode() != nullptr)
 		{
-			indexNode++;
-			int indexRightNode = indexNode;
-			myfile.append(report(root->getRightNode()));
-			myfile.append("N" + to_string(indexParentNode) + " -> N" + to_string(indexRightNode) + "; ");
+			myfile.append(reportRightNode(root, indexParentNode));
 		}
 	}
+	return myfile;
+}
+
+string AVLTree::reportLeftNode(AVLTreeNode* root, int indexParentNode)
+{
+	string myfile;
+	indexNode++;
+	int indexLeftNode = indexNode;
+	myfile.append(report(root->getLeftNode()));
+	myfile.append("N" + to_string(indexParentNode));
+	myfile.append(" -> N" + to_string(indexLeftNode) + "; ");
+	return myfile;
+}
+
+string AVLTree::reportRightNode(AVLTreeNode* root, int indexParentNode)
+{
+	string myfile;
+	indexNode++;
+	int indexRightNode = indexNode;
+	myfile.append(report(root->getRightNode()));
+	myfile.append("N" + to_string(indexParentNode));
+	myfile.append(" -> N" + to_string(indexRightNode) + "; ");
 	return myfile;
 }
 

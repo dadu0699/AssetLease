@@ -27,6 +27,8 @@ private:
     AVLTreeNode *deleteNode(AVLTreeNode *avlTreeNode, string identifier);
     void inOrder(AVLTreeNode *root);
     string report(AVLTreeNode *root);
+    string reportLeftNode(AVLTreeNode *root, int indexParentNode);
+    string reportRightNode(AVLTreeNode *root, int indexParentNode);
 
 public:
     AVLTree();
