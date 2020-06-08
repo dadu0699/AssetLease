@@ -228,7 +228,7 @@ AVLTreeNode *AVLTree::search(string identifier)
 
 AVLTreeNode *AVLTree::search(string identifier, AVLTreeNode *avlTreeNode)
 {
-	if (!isEmpty())
+	if (avlTreeNode != nullptr)
 	{
 		if (identifier < avlTreeNode->getAsset()->getIdentifier())
 		{

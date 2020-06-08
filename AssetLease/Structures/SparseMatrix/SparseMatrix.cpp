@@ -214,26 +214,22 @@ void SparseMatrix::printAssetsByDepartment(string department)
     }
 }
 
-void SparseMatrix::printColumns()
+void SparseMatrix::printAssetsByCorporation(string corporation)
 {
-    SparseMatrixNode *auxiliaryColumn = root->getNextNode();
-    SparseMatrixNode *auxiliaryNode = auxiliaryColumn;
+    SparseMatrixNode* departmentNode = searchRow(corporation);
 
-    while (auxiliaryColumn != nullptr)
+    if (departmentNode != nullptr)
     {
-        cout << " ----------------------- " << endl;
+        SparseMatrixNode* auxiliaryNode = departmentNode->getNextNode();
+
         while (auxiliaryNode != nullptr)
         {
             if (auxiliaryNode->getUserList() != nullptr)
             {
-                cout << "^" << endl;
-                auxiliaryNode->getUserList()->readStartNodes();
+                auxiliaryNode->getUserList()->printAssets(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
             }
-            auxiliaryNode = auxiliaryNode->getDownNode();
+            auxiliaryNode = auxiliaryNode->getNextNode();
         }
-
-        auxiliaryColumn = auxiliaryColumn->getNextNode();
-        auxiliaryNode = auxiliaryColumn;
     }
 }
 

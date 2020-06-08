@@ -51,6 +51,7 @@ void Menu::interfaceDesign()
 		// Obtain node from the matrix through the department and corporation and verify if the user is found
 		else if (sp->getInstance()->getNode(department, corporation) != nullptr)
 		{
+			flag = true;
 			if (sp->getInstance()->getNode(department, corporation)->getUserList()->searchNode(nickname, password) != nullptr)
 			{
 				user->getInstance()->setUser(sp->getInstance()

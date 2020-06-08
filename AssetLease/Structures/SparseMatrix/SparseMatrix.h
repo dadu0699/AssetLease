@@ -29,7 +29,7 @@ public:
     void printRowHeaders();
     void printColumnHeaders();
     void printAssetsByDepartment(string department);
-    void printColumns();
+    void printAssetsByCorporation(string corporation);
 };
 
 #endif // SPARSEMATRIX_H

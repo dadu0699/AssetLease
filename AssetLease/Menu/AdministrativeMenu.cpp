@@ -70,10 +70,36 @@ void AdministrativeMenu::interfaceDesign()
 			sp->getInstance()->printAssetsByDepartment(department);
 			break;
 		case '4':
+			cout << "                             EMPRESA" << endl;
+			cout << ">> ";
+			cin.ignore();
+			getline(cin, corporation);
+			sp->getInstance()->printAssetsByCorporation(corporation);
 			break;
 		case '5':
 			break;
 		case '6':
+			cout << "                         NOMBRE DE USUARIO" << endl;
+			cout << ">> ";
+			cin.ignore();
+			getline(cin, nickname);
+			cout << "                           DEPARTAMENTO" << endl;
+			cout << ">> ";
+			getline(cin, department);
+			cout << "                             EMPRESA" << endl;
+			cout << ">> ";
+			getline(cin, corporation);
+			if (sp->getInstance()->getNode(department, corporation) != nullptr)
+			{
+				if (sp->getInstance()->getNode(department, corporation)->getUserList()->searchNode(nickname, password) != nullptr)
+				{
+					sp->getInstance()
+						->getNode(department, corporation)
+						->getUserList()
+						->searchNode(nickname, password)
+						->getUser()->getAssetAVL()->report(nickname, department, corporation);
+				}
+			}
 			break;
 		case '7':
 			break;
