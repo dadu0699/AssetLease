@@ -141,7 +141,9 @@
   <ItemGroup>
     <ClCompile Include="AssetLease.cpp" />
     <ClCompile Include="Controllers\IDGenerator.cpp" />
+    <ClCompile Include="Menu\AdministrativeMenu.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="Menu\UserMenu.cpp" />
     <ClCompile Include="Models\Asset.cpp" />
     <ClCompile Include="Models\User.cpp" />
     <ClCompile Include="Structures\AVLTree\AVLTree.cpp" />
@@ -153,7 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controllers\IDGenerator.h" />
+    <ClInclude Include="Menu\AdministrativeMenu.h" />
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Menu\UserMenu.h" />
     <ClInclude Include="Models\Asset.h" />
     <ClInclude Include="Models\User.h" />
     <ClInclude Include="Structures\AVLTree\AVLTree.h" />

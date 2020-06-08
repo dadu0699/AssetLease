@@ -7,6 +7,8 @@ private:
 public:
 	Menu();
 	~Menu();
+
+	void interfaceDesign();
 };
 
 #endif // MENU_H

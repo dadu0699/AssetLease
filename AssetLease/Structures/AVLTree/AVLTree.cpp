@@ -14,15 +14,6 @@ bool AVLTree::isEmpty()
 	return root == nullptr;
 }
 
-int AVLTree::updateHeight(AVLTreeNode* avlTreeNode)
-{
-	if (avlTreeNode != nullptr)
-	{
-		return avlTreeNode->getHeight();
-	}
-	return 0;
-}
-
 int AVLTree::max(int a, int b)
 {
 	if (a > b)
@@ -30,6 +21,15 @@ int AVLTree::max(int a, int b)
 		return a;
 	}
 	return b;
+}
+
+int AVLTree::updateHeight(AVLTreeNode* avlTreeNode)
+{
+	if (avlTreeNode != nullptr)
+	{
+		return avlTreeNode->getHeight();
+	}
+	return 0;
 }
 
 int AVLTree::getBalanceFactor(AVLTreeNode *avlTreeNode)

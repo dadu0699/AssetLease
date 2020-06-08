@@ -7,8 +7,10 @@
 class SparseMatrix
 {
 private:
+    static SparseMatrix *instance;
     SparseMatrixNode *root;
 
+    SparseMatrix();
     SparseMatrixNode *searchColumn(string xDepartment);
     SparseMatrixNode *searchRow(string yCorporation);
     SparseMatrixNode *createColumn(string xDepartment);
@@ -17,7 +19,7 @@ private:
     SparseMatrixNode *insertIntoRow(SparseMatrixNode *node, SparseMatrixNode *headerColumn);
 
 public:
-    SparseMatrix();
+    static SparseMatrix *getInstance();
     ~SparseMatrix();
 
     void addNode(string xDepartment, string yCorporation, User *user);

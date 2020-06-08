@@ -5,6 +5,17 @@ SparseMatrix::SparseMatrix()
     root = new SparseMatrixNode("-1", "-1", "ROOT");
 }
 
+SparseMatrix* SparseMatrix::instance = nullptr;
+
+SparseMatrix *SparseMatrix::getInstance()
+{
+    if (instance == nullptr)
+    {
+        instance = new SparseMatrix();
+    }
+    return instance;
+}
+
 SparseMatrix::~SparseMatrix()
 {
 }
@@ -240,11 +251,11 @@ void SparseMatrix::report()
     {
         if (root != nullptr)
         {
-            SparseMatrixNode* rowHeaders = root->getDownNode();
-            SparseMatrixNode* columnHeaders = root->getNextNode();
-            SparseMatrixNode* auxiliaryRow = root->getDownNode();
-            SparseMatrixNode* auxiliaryColumn = root->getNextNode();
-            SparseMatrixNode* auxiliaryNode;
+            SparseMatrixNode *rowHeaders = root->getDownNode();
+            SparseMatrixNode *columnHeaders = root->getNextNode();
+            SparseMatrixNode *auxiliaryRow = root->getDownNode();
+            SparseMatrixNode *auxiliaryColumn = root->getNextNode();
+            SparseMatrixNode *auxiliaryNode;
 
             myfile << "digraph Sparce_Matrix {";
             myfile << "node [shape=box]";
@@ -270,7 +281,7 @@ void SparseMatrix::report()
                 myfile << "C" << columnHeaders->getXDepartment();
                 myfile << "[label = \"" << columnHeaders->getXDepartment() << "\"";
                 myfile << "width = 1.5 style = filled, fillcolor = bisque, group =" << columnHeaders->getXDepartment() + "2"
-                    << "];";
+                       << "];";
                 columnHeaders = columnHeaders->getNextNode();
             }
 
@@ -303,8 +314,8 @@ void SparseMatrix::report()
                     myfile << " [label = \"" << auxiliaryNode->getUserList()->getFirstNode()->getUser()->getNickname() << "\" width = 1.5,";
                     myfile << " style = filled, fillcolor = cornsilk2,";
 
-
-                    myfile << " group = " << auxiliaryNode->getXDepartment() + "2" << "];";
+                    myfile << " group = " << auxiliaryNode->getXDepartment() + "2"
+                           << "];";
                     auxiliaryNode = auxiliaryNode->getNextNode();
                 }
                 auxiliaryRow = auxiliaryRow->getDownNode();
