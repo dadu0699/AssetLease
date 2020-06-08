@@ -2,6 +2,7 @@
 #include "AdministrativeMenu.h"
 #include "UserMenu.h"
 #include "../Structures/SparseMatrix/SparseMatrix.h"
+#include "../Controllers/UserSession.h"
 
 Menu::Menu()
 {
@@ -13,16 +14,16 @@ Menu::~Menu()
 
 void Menu::interfaceDesign()
 {
-	AdministrativeMenu* administrativeMenu = new AdministrativeMenu();
-	UserMenu* userMenu = new UserMenu();
-	SparseMatrix* sp;
-	
+	AdministrativeMenu *administrativeMenu = new AdministrativeMenu();
+	UserMenu *userMenu = new UserMenu();
+	SparseMatrix *sp;
+	UserSession *user;
+
 	string nickname;
 	string password;
+	bool flag = false;
 	string department;
 	string corporation;
-	// SparseMatrix* sp = sp->getInstance();
-
 
 	while (true)
 	{
@@ -48,8 +49,17 @@ void Menu::interfaceDesign()
 			administrativeMenu->interfaceDesign();
 		}
 		// Obtain node from the matrix through the department and corporation and verify if the user is found
-		else if (false) 
+		else if (sp->getInstance()->getNode(department, corporation) != nullptr)
 		{
+			if (sp->getInstance()->getNode(department, corporation)->getUserList()->searchNode(nickname, password) != nullptr)
+			{
+				user->getInstance()->setUser(sp->getInstance()
+												 ->getNode(department, corporation)
+												 ->getUserList()
+												 ->searchNode(nickname, password)
+												 ->getUser());
+				userMenu->interfaceDesign();
+			}
 		}
 		else
 		{

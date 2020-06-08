@@ -48,7 +48,7 @@ bool Asset::getLease()
 	return lease;
 }
 
-void Asset::setDescription(bool lease)
+void Asset::setLease(bool lease)
 {
 	this->lease = lease;
 }

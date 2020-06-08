@@ -1,6 +1,10 @@
 #ifndef USERMENU_H
 #define USERMENU_H
 
+#include <iostream>
+#include <string>
+using namespace std;
+
 class UserMenu
 {
 private:

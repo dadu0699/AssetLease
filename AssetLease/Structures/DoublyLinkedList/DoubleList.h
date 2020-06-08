@@ -26,11 +26,13 @@ public:
     void deleteLastNode();
     void deleteSpecificNode(string nickname);
     DoubleNode *searchNode(string nickname);
+    DoubleNode *searchNode(string nickname, string password);
     bool isEmpty();
     void report();
 
     void readStartNodes();
     void readEndNodes();
+    void printAssets(string department, string corporation);
 };
 
 #endif // DOUBLELIST_H

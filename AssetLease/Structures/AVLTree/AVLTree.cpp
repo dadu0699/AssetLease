@@ -23,7 +23,7 @@ int AVLTree::max(int a, int b)
 	return b;
 }
 
-int AVLTree::updateHeight(AVLTreeNode* avlTreeNode)
+int AVLTree::updateHeight(AVLTreeNode *avlTreeNode)
 {
 	if (avlTreeNode != nullptr)
 	{
@@ -63,9 +63,9 @@ AVLTreeNode *AVLTree::rightRotation(AVLTreeNode *avlTreeNode)
 	return auxiliaryNode;
 }
 
-AVLTreeNode* AVLTree::leftRightRotation(AVLTreeNode* avlTreeNode)
+AVLTreeNode *AVLTree::leftRightRotation(AVLTreeNode *avlTreeNode)
 {
-	AVLTreeNode* auxiliaryNode;
+	AVLTreeNode *auxiliaryNode;
 	avlTreeNode->setLeftNode(leftRotation(avlTreeNode->getLeftNode()));
 	auxiliaryNode = rightRotation(avlTreeNode);
 	return auxiliaryNode;
@@ -139,9 +139,9 @@ void AVLTree::deleteNode(string identifier)
 	root = deleteNode(root, identifier);
 }
 
-AVLTreeNode* AVLTree::nodeWithMinimumValue(AVLTreeNode* avlTreeNode)
+AVLTreeNode *AVLTree::nodeWithMinimumValue(AVLTreeNode *avlTreeNode)
 {
-	AVLTreeNode* current = avlTreeNode->getRightNode();
+	AVLTreeNode *current = avlTreeNode->getRightNode();
 	while (current->getLeftNode() != nullptr)
 	{
 		current = current->getLeftNode();
@@ -221,6 +221,11 @@ AVLTreeNode *AVLTree::deleteNode(AVLTreeNode *avlTreeNode, string identifier)
 	return avlTreeNode;
 }
 
+AVLTreeNode *AVLTree::search(string identifier)
+{
+	return search(identifier, root);
+}
+
 AVLTreeNode *AVLTree::search(string identifier, AVLTreeNode *avlTreeNode)
 {
 	if (!isEmpty())
@@ -251,7 +256,7 @@ void AVLTree::inOrder(AVLTreeNode *root)
 	if (root != nullptr)
 	{
 		inOrder(root->getLeftNode());
-		cout << "ID = " << root->getAsset()->getIdentifier() << "; "
+		cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
 			 << "Nombre = " << root->getAsset()->getName() << "; "
 			 << "Descripcion = " << root->getAsset()->getDescription() << "; "
 			 << endl;
@@ -268,8 +273,13 @@ string AVLTree::report(AVLTreeNode *root)
 		myfile.append("N" + to_string(indexNode));
 		myfile.append("[label=\"ID: " + root->getAsset()->getIdentifier() + "\\n");
 		myfile.append("Nombre: " + root->getAsset()->getName() + "\\n");
-		myfile.append("Descripcion: " + root->getAsset()->getDescription() + "\"]; ");
-		
+		myfile.append("Descripcion: " + root->getAsset()->getDescription() + "\"");
+		if (root->getAsset()->getLease())
+		{
+			myfile.append("style=filled color=\"#f8d7da\" fillcolor=\"#f8d7da\", fontcolor = \"#721c57\"");
+		}
+		myfile.append("]; ");
+
 		if (root->getLeftNode() != nullptr)
 		{
 			myfile.append(reportLeftNode(root, indexParentNode));
@@ -283,7 +293,7 @@ string AVLTree::report(AVLTreeNode *root)
 	return myfile;
 }
 
-string AVLTree::reportLeftNode(AVLTreeNode* root, int indexParentNode)
+string AVLTree::reportLeftNode(AVLTreeNode *root, int indexParentNode)
 {
 	string myfile;
 	indexNode++;
@@ -294,7 +304,7 @@ string AVLTree::reportLeftNode(AVLTreeNode* root, int indexParentNode)
 	return myfile;
 }
 
-string AVLTree::reportRightNode(AVLTreeNode* root, int indexParentNode)
+string AVLTree::reportRightNode(AVLTreeNode *root, int indexParentNode)
 {
 	string myfile;
 	indexNode++;
@@ -305,13 +315,14 @@ string AVLTree::reportRightNode(AVLTreeNode* root, int indexParentNode)
 	return myfile;
 }
 
-void AVLTree::report()
+void AVLTree::report(string user, string department, string corporation)
 {
 	ofstream myfile("AVLTree.dot");
 
 	if (myfile.is_open())
 	{
 		myfile << "digraph G { ";
+		myfile << "graph[label = \"(" + user + ", " + department + ", " + corporation + ")\", labelloc=t, fontsize=30];";
 		indexNode = 0;
 		myfile << report(root);
 		myfile << " }";

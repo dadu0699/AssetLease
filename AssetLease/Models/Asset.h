@@ -26,7 +26,7 @@ public:
 	void setDescription(string description);
 
 	bool getLease();
-	void setDescription(bool lease);
+	void setLease(bool lease);
 };
 
 #endif // ASSET_H

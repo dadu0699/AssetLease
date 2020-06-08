@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="AssetLease.cpp" />
     <ClCompile Include="Controllers\IDGenerator.cpp" />
+    <ClCompile Include="Controllers\UserSession.cpp" />
     <ClCompile Include="Menu\AdministrativeMenu.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
     <ClCompile Include="Menu\UserMenu.cpp" />
@@ -155,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controllers\IDGenerator.h" />
+    <ClInclude Include="Controllers\UserSession.h" />
     <ClInclude Include="Menu\AdministrativeMenu.h" />
     <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="Menu\UserMenu.h" />

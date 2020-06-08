@@ -11,7 +11,7 @@ AdministrativeMenu::~AdministrativeMenu()
 
 void AdministrativeMenu::interfaceDesign()
 {
-	SparseMatrix* sp;
+	SparseMatrix *sp;
 
 	string option;
 	string nickname;
@@ -19,8 +19,6 @@ void AdministrativeMenu::interfaceDesign()
 	string password;
 	string department;
 	string corporation;
-	// SparseMatrix* sp = sp->getInstance();
-
 
 	while (true)
 	{
@@ -43,33 +41,33 @@ void AdministrativeMenu::interfaceDesign()
 		switch (option[0])
 		{
 		case '1':
-
 			cout << "                         NOMBRE DE USUARIO" << endl;
 			cout << ">> ";
 			cin.ignore();
 			getline(cin, nickname);
 			cout << "                            CONTRASENIA" << endl;
 			cout << ">> ";
-			cin.ignore();
 			getline(cin, password);
 			cout << "                          NOMBRE COMPLETO" << endl;
 			cout << ">> ";
-			cin.ignore();
 			getline(cin, name);
 			cout << "                           DEPARTAMENTO" << endl;
 			cout << ">> ";
-			cin.ignore();
 			getline(cin, department);
 			cout << "                             EMPRESA" << endl;
 			cout << ">> ";
-			cin.ignore();
 			getline(cin, corporation);
-			sp->getInstance()->addNode(department,corporation, new User(nickname, password, name));
+			sp->getInstance()->addNode(department, corporation, new User(nickname, password, name));
 			break;
 		case '2':
 			sp->getInstance()->report();
 			break;
 		case '3':
+			cout << "                           DEPARTAMENTO" << endl;
+			cout << ">> ";
+			cin.ignore();
+			getline(cin, department);
+			sp->getInstance()->printAssetsByDepartment(department);
 			break;
 		case '4':
 			break;

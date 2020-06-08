@@ -24,11 +24,11 @@ public:
 
     void addNode(string xDepartment, string yCorporation, User *user);
     void report();
-    SparseMatrixNode *getNode(int xDepartment, int yCorporation);
+    SparseMatrixNode *getNode(string xDepartment, string yCorporation);
 
     void printRowHeaders();
     void printColumnHeaders();
-    void printRows();
+    void printAssetsByDepartment(string department);
     void printColumns();
 };
 

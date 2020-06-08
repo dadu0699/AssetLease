@@ -122,6 +122,16 @@ DoubleNode *DoubleList::searchNode(string nickname)
     return auxiliaryNode;
 }
 
+DoubleNode *DoubleList::searchNode(string nickname, string password)
+{
+    DoubleNode *auxiliaryNode = firstNode;
+    while (auxiliaryNode != nullptr && auxiliaryNode->getUser()->getNickname() != nickname && auxiliaryNode->getUser()->getPassword() != password)
+    {
+        auxiliaryNode = auxiliaryNode->getNextNode();
+    }
+    return auxiliaryNode;
+}
+
 void DoubleList::report()
 {
     if (!isEmpty())
@@ -167,8 +177,9 @@ void DoubleList::report()
 
 void DoubleList::readStartNodes()
 {
-    if (!isEmpty()) {
-        DoubleNode* auxiliaryNode = firstNode;
+    if (!isEmpty())
+    {
+        DoubleNode *auxiliaryNode = firstNode;
         while (auxiliaryNode != nullptr)
         {
             cout << auxiliaryNode->getUser()->getNickname() << " <-> ";
@@ -187,4 +198,19 @@ void DoubleList::readEndNodes()
         auxiliaryNode = auxiliaryNode->getPreviousNode();
     }
     cout << endl;
+}
+
+void DoubleList::printAssets(string department, string corporation)
+{
+    if (!isEmpty())
+    {
+        DoubleNode *auxiliaryNode = firstNode;
+        while (auxiliaryNode != nullptr)
+        {
+            auxiliaryNode->getUser()->getAssetAVL()->report(auxiliaryNode->getUser()->getNickname(), department, corporation);
+            system("pause");
+            auxiliaryNode = auxiliaryNode->getNextNode();
+        }
+        cout << endl;
+    }
 }

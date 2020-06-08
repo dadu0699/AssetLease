@@ -5,7 +5,7 @@ SparseMatrix::SparseMatrix()
     root = new SparseMatrixNode("-1", "-1", "ROOT");
 }
 
-SparseMatrix* SparseMatrix::instance = nullptr;
+SparseMatrix *SparseMatrix::instance = nullptr;
 
 SparseMatrix *SparseMatrix::getInstance()
 {
@@ -195,29 +195,23 @@ void SparseMatrix::printColumnHeaders()
     cout << endl;
 }
 
-void SparseMatrix::printRows()
+void SparseMatrix::printAssetsByDepartment(string department)
 {
-    SparseMatrixNode *auxiliaryRow = root->getDownNode();
-    SparseMatrixNode *auxiliaryNode = auxiliaryRow;
+    SparseMatrixNode *departmentNode = searchColumn(department);
 
-    while (auxiliaryRow != nullptr)
+    if (departmentNode != nullptr)
     {
-        cout << " ----------------------- " << endl;
+        SparseMatrixNode *auxiliaryNode = departmentNode->getDownNode();
+
         while (auxiliaryNode != nullptr)
         {
             if (auxiliaryNode->getUserList() != nullptr)
             {
-                auxiliaryNode->getUserList()->readStartNodes();
-                cout << " ----> ";
+                auxiliaryNode->getUserList()->printAssets(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
             }
-            auxiliaryNode = auxiliaryNode->getNextNode();
+            auxiliaryNode = auxiliaryNode->getDownNode();
         }
-
-        auxiliaryRow = auxiliaryRow->getDownNode();
-        auxiliaryNode = auxiliaryRow;
-        cout << endl;
     }
-    cout << endl;
 }
 
 void SparseMatrix::printColumns()
@@ -392,4 +386,33 @@ void SparseMatrix::report()
     {
         cout << "Unable to open file";
     }
+}
+
+SparseMatrixNode *SparseMatrix::getNode(string xDepartment, string yCorporation)
+{
+    SparseMatrixNode *columnNode = searchColumn(xDepartment);
+    SparseMatrixNode *rowNode = searchRow(yCorporation);
+
+    if (columnNode != nullptr && rowNode != nullptr)
+    {
+        SparseMatrixNode *auxiliaryNode = root;
+        while (auxiliaryNode != nullptr)
+        {
+            if (auxiliaryNode->getYCorporation() == yCorporation)
+            {
+                break;
+            }
+            auxiliaryNode = auxiliaryNode->getDownNode();
+        }
+
+        while (auxiliaryNode != nullptr)
+        {
+            if (auxiliaryNode->getXDepartment() == xDepartment)
+            {
+                return auxiliaryNode;
+            }
+            auxiliaryNode = auxiliaryNode->getNextNode();
+        }
+    }
+    return nullptr;
 }

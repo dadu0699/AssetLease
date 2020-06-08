@@ -2,6 +2,7 @@
 #define ADMINMENU_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class AdministrativeMenu

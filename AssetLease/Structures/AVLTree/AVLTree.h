@@ -25,6 +25,7 @@ private:
     AVLTreeNode *leftRightRotation(AVLTreeNode *avlTreeNode);
     AVLTreeNode *insert(AVLTreeNode *newNode, AVLTreeNode *avlTreeNode);
     AVLTreeNode *deleteNode(AVLTreeNode *avlTreeNode, string identifier);
+    AVLTreeNode *search(string identifier, AVLTreeNode *avlTreeNode);
     void inOrder(AVLTreeNode *root);
     string report(AVLTreeNode *root);
     string reportLeftNode(AVLTreeNode *root, int indexParentNode);
@@ -36,9 +37,9 @@ public:
 
     void insert(Asset *asset);
     void deleteNode(string identifier);
-    AVLTreeNode *search(string identifier, AVLTreeNode *avlTreeNode);
+    AVLTreeNode *search(string identifier);
     void inOrder();
-    void report();
+    void report(string user, string department, string corporation);
 };
 
 #endif // AVLTREE_H
