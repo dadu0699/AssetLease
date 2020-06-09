@@ -256,10 +256,13 @@ void AVLTree::inOrder(AVLTreeNode *root)
 	if (root != nullptr)
 	{
 		inOrder(root->getLeftNode());
-		cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
-			 << "Nombre = " << root->getAsset()->getName() << "; "
-			 << "Descripcion = " << root->getAsset()->getDescription() << "; "
-			 << endl;
+		if (!root->getAsset()->getLease()) 
+		{
+			cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
+				<< "Nombre = " << root->getAsset()->getName() << "; "
+				<< "Descripcion = " << root->getAsset()->getDescription() << "; "
+				<< endl;
+		}
 		inOrder(root->getRightNode());
 	}
 }

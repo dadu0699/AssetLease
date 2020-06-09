@@ -61,6 +61,10 @@ void Menu::interfaceDesign()
 												 ->getUser());
 				userMenu->interfaceDesign();
 			}
+			else
+			{
+				cout << ">> USER NOT FOUND" << endl;
+			}
 		}
 		else
 		{

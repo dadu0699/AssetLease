@@ -115,8 +115,11 @@ void DoubleList::deleteSpecificNode(string nickname)
 DoubleNode *DoubleList::searchNode(string nickname)
 {
     DoubleNode *auxiliaryNode = firstNode;
-    while (auxiliaryNode != nullptr && auxiliaryNode->getUser()->getNickname() != nickname)
+    while (auxiliaryNode != nullptr)
     {
+        if (auxiliaryNode->getUser()->getNickname() != nickname) {
+            return auxiliaryNode;
+        }
         auxiliaryNode = auxiliaryNode->getNextNode();
     }
     return auxiliaryNode;
@@ -125,8 +128,11 @@ DoubleNode *DoubleList::searchNode(string nickname)
 DoubleNode *DoubleList::searchNode(string nickname, string password)
 {
     DoubleNode *auxiliaryNode = firstNode;
-    while (auxiliaryNode != nullptr && auxiliaryNode->getUser()->getNickname() != nickname && auxiliaryNode->getUser()->getPassword() != password)
+    while (auxiliaryNode != nullptr)
     {
+        if (auxiliaryNode->getUser()->getNickname() != nickname && auxiliaryNode->getUser()->getPassword() != password) {
+            return auxiliaryNode;
+        }
         auxiliaryNode = auxiliaryNode->getNextNode();
     }
     return auxiliaryNode;

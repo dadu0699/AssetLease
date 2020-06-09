@@ -109,6 +109,10 @@ void UserMenu::interfaceDesign()
 			cout << "|                        CATALOGO ACTIVOS                            |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
 			sp->getInstance()->printCatalogue();
+			cout << "                                ID" << endl;
+			cout << ">> ";
+			cin.ignore();
+			getline(cin, name);
 			system("pause");
 			break;
 		case '5':

@@ -240,10 +240,12 @@ void SparseMatrix::printCatalogue()
     
     while (auxiliaryColumn != nullptr)
     {
+        cout << "----- DEPARTAMENTO: " << auxiliaryColumn->getName() << endl;
         while (auxiliaryNode != nullptr)
         {
             if (auxiliaryNode->getName().size() == 0) 
             {
+                cout << "------- EMPRESA: " << auxiliaryNode->getYCorporation() << endl;
                 auxiliaryNode->getUserList()->readStartNodes();
             }
             auxiliaryNode = auxiliaryNode->getDownNode();
