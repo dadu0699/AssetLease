@@ -10,8 +10,8 @@ class Lease
 {
 private:
 	string identifier;
-	Asset* asset;
-	User* user;
+	Asset *asset;
+	User *user;
 	string returnDate;
 
 public:
@@ -19,8 +19,8 @@ public:
 	~Lease();
 
 	string getIdentifier();
-	Asset* getAsset() const;
-	User* getUser() const;
+	Asset *getAsset() const;
+	User *getUser() const;
 	string getreturnDate();
 };
 

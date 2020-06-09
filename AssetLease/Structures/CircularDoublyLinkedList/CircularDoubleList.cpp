@@ -15,7 +15,7 @@ bool CircularDoubleList::isEmpty()
 	return firstNode == nullptr;
 }
 
-void CircularDoubleList::addNode(Lease* lease)
+void CircularDoubleList::addNode(Lease *lease)
 {
 	CircularDoubleNode *newNode = new CircularDoubleNode(lease);
 
@@ -30,7 +30,7 @@ void CircularDoubleList::addNode(Lease* lease)
 		firstNode->setPreviousNode(lastNode);
 		lastNode->setPreviousNode(firstNode);
 	}
-	else 
+	else
 	{
 		newNode->setPreviousNode(lastNode);
 		newNode->setNextNode(firstNode);
@@ -50,8 +50,8 @@ void CircularDoubleList::readStartNodes()
 		do
 		{
 			cout << "ID: " << auxiliaryNode->getLease()->getIdentifier();
-			cout << "NOMBRE: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() 
-				<< " " <<  auxiliaryNode->getLease()->getAsset()->getName();
+			cout << "NOMBRE: " << auxiliaryNode->getLease()->getAsset()->getIdentifier()
+				 << " " << auxiliaryNode->getLease()->getAsset()->getName();
 			cout << "TIEMPO RENTA: " << auxiliaryNode->getLease()->getIdentifier();
 			auxiliaryNode = auxiliaryNode->getNextNode();
 		} while (auxiliaryNode != firstNode);
@@ -94,8 +94,8 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 		}
 		else
 		{
-			CircularDoubleNode* previousNode = auxiliaryNode->getPreviousNode();
-			CircularDoubleNode* nextNode = auxiliaryNode->getNextNode();
+			CircularDoubleNode *previousNode = auxiliaryNode->getPreviousNode();
+			CircularDoubleNode *nextNode = auxiliaryNode->getNextNode();
 			previousNode->setNextNode(nextNode);
 			nextNode->setPreviousNode(previousNode);
 		}
@@ -106,7 +106,7 @@ CircularDoubleNode *CircularDoubleList::searchNode(string identifier)
 {
 	if (!isEmpty())
 	{
-		CircularDoubleNode* auxiliaryNode = firstNode;
+		CircularDoubleNode *auxiliaryNode = firstNode;
 		string auxWord;
 		do
 		{
@@ -143,8 +143,8 @@ void CircularDoubleList::report()
 			{
 				myfile << "N" << index;
 				myfile << "[label=\"ID: " << auxiliaryNode->getLease()->getIdentifier() << "\\n";
-				myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " " 
-					<< auxiliaryNode->getLease()->getAsset()->getName() << "\\n" ;
+				myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " "
+					   << auxiliaryNode->getLease()->getAsset()->getName() << "\\n";
 				myfile << "Usuario: " << auxiliaryNode->getLease()->getUser()->getName() << "\\n";
 				myfile << "Devolucion: " << auxiliaryNode->getLease()->getreturnDate() << "\"";
 				myfile << "]; ";

@@ -17,7 +17,7 @@ public:
     CircularDoubleList();
     ~CircularDoubleList();
 
-    void addNode(Lease* lease);
+    void addNode(Lease *lease);
     void readStartNodes();
     void deleteSpecificNode(string identifier);
     CircularDoubleNode *searchNode(string identifier);

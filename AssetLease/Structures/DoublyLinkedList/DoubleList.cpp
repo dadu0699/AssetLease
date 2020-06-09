@@ -182,7 +182,7 @@ void DoubleList::readStartNodes()
         DoubleNode *auxiliaryNode = firstNode;
         while (auxiliaryNode != nullptr)
         {
-            cout << auxiliaryNode->getUser()->getNickname() << " <-> ";
+            auxiliaryNode->getUser()->getAssetAVL()->inOrder();
             auxiliaryNode = auxiliaryNode->getNextNode();
         }
         cout << endl;

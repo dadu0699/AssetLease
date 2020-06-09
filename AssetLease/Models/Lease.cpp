@@ -18,12 +18,12 @@ string Lease::getIdentifier()
 	return identifier;
 }
 
-Asset* Lease::getAsset() const
+Asset *Lease::getAsset() const
 {
 	return asset;
 }
 
-User* Lease::getUser() const
+User *Lease::getUser() const
 {
 	return user;
 }

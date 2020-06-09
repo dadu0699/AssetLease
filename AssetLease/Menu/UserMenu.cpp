@@ -1,5 +1,6 @@
 #include "UserMenu.h"
 #include "../Controllers/UserSession.h"
+#include "../Structures/SparseMatrix/SparseMatrix.h"
 
 UserMenu::UserMenu()
 {
@@ -12,6 +13,7 @@ UserMenu::~UserMenu()
 void UserMenu::interfaceDesign()
 {
 	UserSession *us;
+	SparseMatrix *sp;
 	AVLTreeNode *asset;
 
 	string option;
@@ -102,6 +104,12 @@ void UserMenu::interfaceDesign()
 			system("pause");
 			break;
 		case '4':
+			system("CLS");
+			cout << "----------------------------------------------------------------------" << endl;
+			cout << "|                        CATALOGO ACTIVOS                            |" << endl;
+			cout << "----------------------------------------------------------------------" << endl;
+			sp->getInstance()->printCatalogue();
+			system("pause");
 			break;
 		case '5':
 			break;

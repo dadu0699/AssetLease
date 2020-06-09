@@ -1,6 +1,6 @@
 #include "CircularDoubleNode.h"
 
-CircularDoubleNode::CircularDoubleNode(Lease* lease)
+CircularDoubleNode::CircularDoubleNode(Lease *lease)
 {
     this->lease = lease;
     nextNode = this;
@@ -11,7 +11,7 @@ CircularDoubleNode::~CircularDoubleNode()
 {
 }
 
-Lease* CircularDoubleNode::getLease() const
+Lease *CircularDoubleNode::getLease() const
 {
     return lease;
 }

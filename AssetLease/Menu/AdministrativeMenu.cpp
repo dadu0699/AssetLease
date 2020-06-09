@@ -97,7 +97,9 @@ void AdministrativeMenu::interfaceDesign()
 						->getNode(department, corporation)
 						->getUserList()
 						->searchNode(nickname, password)
-						->getUser()->getAssetAVL()->report(nickname, department, corporation);
+						->getUser()
+						->getAssetAVL()
+						->report(nickname, department, corporation);
 				}
 			}
 			break;

@@ -233,6 +233,26 @@ void SparseMatrix::printAssetsByCorporation(string corporation)
     }
 }
 
+void SparseMatrix::printCatalogue()
+{
+    SparseMatrixNode* auxiliaryColumn = root->getNextNode();
+    SparseMatrixNode* auxiliaryNode = auxiliaryColumn;
+    
+    while (auxiliaryColumn != nullptr)
+    {
+        while (auxiliaryNode != nullptr)
+        {
+            if (auxiliaryNode->getName().size() == 0) 
+            {
+                auxiliaryNode->getUserList()->readStartNodes();
+            }
+            auxiliaryNode = auxiliaryNode->getDownNode();
+        }
+        auxiliaryColumn = auxiliaryColumn->getNextNode();
+        auxiliaryNode = auxiliaryColumn;
+    }
+}
+
 void SparseMatrix::report()
 {
     ofstream myfile("sparseMatrix.dot");

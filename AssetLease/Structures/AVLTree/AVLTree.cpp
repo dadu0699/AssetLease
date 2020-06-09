@@ -151,7 +151,7 @@ AVLTreeNode *AVLTree::nodeWithMinimumValue(AVLTreeNode *avlTreeNode)
 
 AVLTreeNode *AVLTree::deleteNode(AVLTreeNode *avlTreeNode, string identifier)
 {
-	if (root == nullptr)
+	if (avlTreeNode == nullptr)
 	{
 		return nullptr;
 	}
