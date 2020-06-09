@@ -207,8 +207,8 @@ void DoubleList::printAssets(string department, string corporation)
         DoubleNode *auxiliaryNode = firstNode;
         while (auxiliaryNode != nullptr)
         {
-            auxiliaryNode->getUser()->getAssetAVL()->report(auxiliaryNode->getUser()->getNickname(), department, corporation);
             system("pause");
+            auxiliaryNode->getUser()->getAssetAVL()->report(auxiliaryNode->getUser()->getNickname(), department, corporation);
             auxiliaryNode = auxiliaryNode->getNextNode();
         }
         cout << endl;

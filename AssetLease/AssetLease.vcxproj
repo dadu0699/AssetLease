@@ -146,9 +146,12 @@
     <ClCompile Include="Menu\Menu.cpp" />
     <ClCompile Include="Menu\UserMenu.cpp" />
     <ClCompile Include="Models\Asset.cpp" />
+    <ClCompile Include="Models\Lease.cpp" />
     <ClCompile Include="Models\User.cpp" />
     <ClCompile Include="Structures\AVLTree\AVLTree.cpp" />
     <ClCompile Include="Structures\AVLTree\AVLTreeNode.cpp" />
+    <ClCompile Include="Structures\CircularDoublyLinkedList\CircularDoubleList.cpp" />
+    <ClCompile Include="Structures\CircularDoublyLinkedList\CircularDoubleNode.cpp" />
     <ClCompile Include="Structures\DoublyLinkedList\DoubleList.cpp" />
     <ClCompile Include="Structures\DoublyLinkedList\DoubleNode.cpp" />
     <ClCompile Include="Structures\SparseMatrix\SparseMatrix.cpp" />
@@ -161,9 +164,12 @@
     <ClInclude Include="Menu\Menu.h" />
     <ClInclude Include="Menu\UserMenu.h" />
     <ClInclude Include="Models\Asset.h" />
+    <ClInclude Include="Models\Lease.h" />
     <ClInclude Include="Models\User.h" />
     <ClInclude Include="Structures\AVLTree\AVLTree.h" />
     <ClInclude Include="Structures\AVLTree\AVLTreeNode.h" />
+    <ClInclude Include="Structures\CircularDoublyLinkedList\CircularDoubleList.h" />
+    <ClInclude Include="Structures\CircularDoublyLinkedList\CircularDoubleNode.h" />
     <ClInclude Include="Structures\DoublyLinkedList\DoubleList.h" />
     <ClInclude Include="Structures\DoublyLinkedList\DoubleNode.h" />
     <ClInclude Include="Structures\SparseMatrix\SparseMatrix.h" />
