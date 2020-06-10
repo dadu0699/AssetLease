@@ -2,6 +2,7 @@
 #define LEASE_H
 
 #include <iostream>
+#include <ctime>
 #include "Asset.h"
 #include "User.h"
 using namespace std;
@@ -12,10 +13,13 @@ private:
 	string identifier;
 	Asset *asset;
 	User *user;
+	string department;
+	string corporation;
+	string leaseDate;
 	string returnDate;
 
 public:
-	Lease(Asset *asset, User *user, string returnDate);
+	Lease(Asset *asset, User *user, string department, string corporation, string returnDate);
 	~Lease();
 
 	string getIdentifier();

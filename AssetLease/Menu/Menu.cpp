@@ -39,10 +39,11 @@ void Menu::interfaceDesign()
 		cin >> password;
 		cout << "                           DEPARTAMENTO" << endl;
 		cout << ">> ";
-		cin >> department;
+		cin.ignore();
+		getline(cin, department);
 		cout << "                             EMPRESA" << endl;
 		cout << ">> ";
-		cin >> corporation;
+		getline(cin, corporation);
 
 		if (nickname == "admin" && password == "admin" && department == "null" && corporation == "null")
 		{

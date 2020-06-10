@@ -130,7 +130,7 @@ DoubleNode *DoubleList::searchNode(string nickname, string password)
     DoubleNode *auxiliaryNode = firstNode;
     while (auxiliaryNode != nullptr)
     {
-        if (auxiliaryNode->getUser()->getNickname() != nickname && auxiliaryNode->getUser()->getPassword() != password) {
+        if (auxiliaryNode->getUser()->getNickname() == nickname && auxiliaryNode->getUser()->getPassword() == password) {
             return auxiliaryNode;
         }
         auxiliaryNode = auxiliaryNode->getNextNode();

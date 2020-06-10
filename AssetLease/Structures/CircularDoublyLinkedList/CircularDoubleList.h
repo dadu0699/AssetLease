@@ -9,16 +9,18 @@ using namespace std;
 class CircularDoubleList
 {
 private:
+    static CircularDoubleList* instance;
     CircularDoubleNode *firstNode;
     CircularDoubleNode *lastNode;
+    CircularDoubleList();
     bool isEmpty();
 
 public:
-    CircularDoubleList();
+    static CircularDoubleList* getInstance();
     ~CircularDoubleList();
 
     void addNode(Lease *lease);
-    void readStartNodes();
+    void readStartNodes(User* user);
     void deleteSpecificNode(string identifier);
     CircularDoubleNode *searchNode(string identifier);
     void report();

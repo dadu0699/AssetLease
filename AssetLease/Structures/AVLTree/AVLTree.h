@@ -27,6 +27,7 @@ private:
     AVLTreeNode *deleteNode(AVLTreeNode *avlTreeNode, string identifier);
     AVLTreeNode *search(string identifier, AVLTreeNode *avlTreeNode);
     void inOrder(AVLTreeNode *root);
+    void inOrderM(AVLTreeNode *root);
     string report(AVLTreeNode *root);
     string reportLeftNode(AVLTreeNode *root, int indexParentNode);
     string reportRightNode(AVLTreeNode *root, int indexParentNode);
@@ -39,6 +40,7 @@ public:
     void deleteNode(string identifier);
     AVLTreeNode *search(string identifier);
     void inOrder();
+    void inOrderM();
     void report(string user, string department, string corporation);
 };
 

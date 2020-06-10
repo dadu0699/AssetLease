@@ -1,12 +1,15 @@
 #include "Lease.h"
 #include "../Controllers/IDGenerator.h"
 
-Lease::Lease(Asset *asset, User *user, string returnDate)
+Lease::Lease(Asset *asset, User *user, string department, string corporation, string returnDate)
 {
 	this->identifier = IDGenerator().getID();
 	this->asset = asset;
 	this->user = user;
+	this->department = department;
+	this->corporation = corporation;
 	this->returnDate = returnDate;
+	this->leaseDate = "";
 }
 
 Lease::~Lease()

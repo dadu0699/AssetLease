@@ -103,7 +103,7 @@ AVLTreeNode *AVLTree::insert(AVLTreeNode *newNode, AVLTreeNode *avlTreeNode)
 	else
 	{
 		cout << "Duplicated";
-		return newNode;
+		return avlTreeNode;
 	}
 
 	avlTreeNode->setHeight(1 + max(updateHeight(avlTreeNode->getLeftNode()), updateHeight(avlTreeNode->getRightNode())));
@@ -257,6 +257,27 @@ void AVLTree::inOrder(AVLTreeNode *root)
 	{
 		inOrder(root->getLeftNode());
 		if (!root->getAsset()->getLease()) 
+		{
+			cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
+				<< "Nombre = " << root->getAsset()->getName() << "; "
+				<< "Descripcion = " << root->getAsset()->getDescription() << "; "
+				<< endl;
+		}
+		inOrder(root->getRightNode());
+	}
+}
+
+void AVLTree::inOrderM(AVLTreeNode* root)
+{
+	inOrder(root);
+}
+
+void AVLTree::inOrderM()
+{
+	if (root != nullptr)
+	{
+		inOrder(root->getLeftNode());
+		if (root->getAsset()->getLease())
 		{
 			cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
 				<< "Nombre = " << root->getAsset()->getName() << "; "

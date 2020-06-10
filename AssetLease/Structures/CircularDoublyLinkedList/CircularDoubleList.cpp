@@ -6,6 +6,17 @@ CircularDoubleList::CircularDoubleList()
 	lastNode = nullptr;
 }
 
+CircularDoubleList* CircularDoubleList::instance = nullptr;
+
+CircularDoubleList* CircularDoubleList::getInstance()
+{
+	if (instance == nullptr)
+	{
+		instance = new CircularDoubleList();
+	}
+	return instance;
+}
+
 CircularDoubleList::~CircularDoubleList()
 {
 }
@@ -42,20 +53,22 @@ void CircularDoubleList::addNode(Lease *lease)
 	}
 }
 
-void CircularDoubleList::readStartNodes()
+void CircularDoubleList::readStartNodes(User *user)
 {
 	if (!isEmpty())
 	{
 		CircularDoubleNode *auxiliaryNode = firstNode;
 		do
 		{
-			cout << "ID: " << auxiliaryNode->getLease()->getIdentifier();
-			cout << "NOMBRE: " << auxiliaryNode->getLease()->getAsset()->getIdentifier()
-				 << " " << auxiliaryNode->getLease()->getAsset()->getName();
-			cout << "TIEMPO RENTA: " << auxiliaryNode->getLease()->getIdentifier();
+			if (auxiliaryNode->getLease()->getUser()->getName() == user->getName()) {
+				cout << "ID: " << auxiliaryNode->getLease()->getIdentifier();
+				cout << " NOMBRE: " << auxiliaryNode->getLease()->getAsset()->getIdentifier()
+					<< " " << auxiliaryNode->getLease()->getAsset()->getName();
+				cout << " TIEMPO RENTA: " << auxiliaryNode->getLease()->getIdentifier();
+				cout << endl;
+			}
 			auxiliaryNode = auxiliaryNode->getNextNode();
 		} while (auxiliaryNode != firstNode);
-		cout << endl;
 	}
 }
 
@@ -64,6 +77,7 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 	if (!isEmpty())
 	{
 		CircularDoubleNode *auxiliaryNode = searchNode(identifier);
+		auxiliaryNode->getLease()->getAsset()->setLease(false);
 		if (firstNode == auxiliaryNode)
 		{
 			if (firstNode == lastNode)

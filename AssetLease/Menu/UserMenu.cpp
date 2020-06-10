@@ -1,6 +1,8 @@
 #include "UserMenu.h"
 #include "../Controllers/UserSession.h"
 #include "../Structures/SparseMatrix/SparseMatrix.h"
+#include "../Structures/CircularDoublyLinkedList/CircularDoubleList.h"
+#include "../Models/Lease.h"
 
 UserMenu::UserMenu()
 {
@@ -15,11 +17,16 @@ void UserMenu::interfaceDesign()
 	UserSession *us;
 	SparseMatrix *sp;
 	AVLTreeNode *asset;
+	CircularDoubleList *dbList;
 
 	string option;
 	string name;
+	string department;
+	string corporation;
 	string description;
-	bool lease;
+	Lease *lease;
+	DoubleNode *dbN;
+	SparseMatrixNode *spN;
 
 	while (true)
 	{
@@ -31,9 +38,10 @@ void UserMenu::interfaceDesign()
 		cout << "----- 2. ELIMINAR ACTIVO" << endl;
 		cout << "----- 3. MODIFICAR ACTIVO" << endl;
 		cout << "----- 4. RENTAR ACTIVO" << endl;
-		cout << "----- 5. ACTIVOS RENTADOS" << endl;
-		cout << "----- 6. MIS ACTIVOS RENTADOS" << endl;
-		cout << "----- 7. CERRAR SESION" << endl;
+		cout << "----- 5. DEVOLVER ACTIVO" << endl;
+		cout << "----- 6. ACTIVOS RENTADOS" << endl;
+		cout << "----- 7. MIS ACTIVOS RENTADOS" << endl;
+		cout << "----- 8. CERRAR SESION" << endl;
 		cout << ">> ";
 		cin >> option;
 
@@ -106,20 +114,71 @@ void UserMenu::interfaceDesign()
 		case '4':
 			system("CLS");
 			cout << "----------------------------------------------------------------------" << endl;
-			cout << "|                        CATALOGO ACTIVOS                            |" << endl;
+			cout << "|                         CATALOGO ACTIVOS                           |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
 			sp->getInstance()->printCatalogue();
+			cout << "----------------------------------------------------------------------" << endl;
+			cout << "|                          RENTAR ACTIVO                             |" << endl;
+			cout << "----------------------------------------------------------------------" << endl;
 			cout << "                                ID" << endl;
 			cout << ">> ";
 			cin.ignore();
 			getline(cin, name);
+			cout << "                           DEPARTAMENTO" << endl;
+			cout << ">> ";
+			getline(cin, department);
+			cout << "                             EMPRESA" << endl;
+			cout << ">> ";
+			getline(cin, corporation);
+			cout << "                        TIEMPO PARA RENTAR" << endl;
+			cout << ">> ";
+			getline(cin, description);
+			spN = sp->getInstance()->getNode(department, corporation);
+			if (spN != nullptr)
+			{
+				dbN = spN->getUserList()->getFirstNode();
+				while (dbN != nullptr)
+				{
+					asset = dbN->getUser()->getAssetAVL()->search(name);
+					if (asset != nullptr) 
+					{
+						asset->getAsset()->setLease(true);
+						dbList->getInstance()->addNode(new Lease(asset->getAsset(), 
+							us->getInstance()->getUser(), department, corporation, description));
+					}
+					dbN = dbN->getNextNode();
+				}
+				cout << endl;
+			}
 			system("pause");
 			break;
 		case '5':
+			cout << "----------------------------------------------------------------------" << endl;
+			cout << "|                          DEVOLVER ACTIVO                           |" << endl;
+			cout << "----------------------------------------------------------------------" << endl;
+			dbList->getInstance()->readStartNodes(us->getInstance()->getUser());			
+			cout << "                                ID" << endl;
+			cout << ">> ";
+			cin.ignore();
+			getline(cin, name);
+			dbList->getInstance()->deleteSpecificNode(name);
+			system("pause");
 			break;
 		case '6':
+			cout << "----------------------------------------------------------------------" << endl;
+			cout << "|                          ACTIVOS RENTADOS                          |" << endl;
+			cout << "----------------------------------------------------------------------" << endl;
+			dbList->getInstance()->readStartNodes(us->getInstance()->getUser());
+			system("pause");
 			break;
 		case '7':
+			cout << "----------------------------------------------------------------------" << endl;
+			cout << "|                        MIS ACTIVOS RENTADOS                        |" << endl;
+			cout << "----------------------------------------------------------------------" << endl;
+			us->getInstance()->getUser()->getAssetAVL()->inOrderM();
+			system("pause");
+			break;
+		case '8':
 			return;
 		default:
 			cout << ">> OPCION INCORRECTA" << endl;
