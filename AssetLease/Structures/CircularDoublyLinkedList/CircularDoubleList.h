@@ -24,6 +24,7 @@ public:
     void deleteSpecificNode(string identifier);
     CircularDoubleNode *searchNode(string identifier);
     void report();
+    void report(string department, string corporation, string user);
 };
 
 #endif // CIRCULARDOUBLELIST_H

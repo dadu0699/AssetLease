@@ -25,6 +25,26 @@ User *UserSession::getUser() const
     return user;
 }
 
+string UserSession::getDepartment()
+{
+    return department;
+}
+
+void UserSession::serDepartment(string department)
+{
+    this->department = department;
+}
+
+string UserSession::getCorporation()
+{
+    return corporation;
+}
+
+void UserSession::setCorporation(string corporation)
+{
+    this->corporation = corporation;
+}
+
 void UserSession::setUser(User *user)
 {
     this->user = user;

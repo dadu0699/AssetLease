@@ -186,3 +186,60 @@ void CircularDoubleList::report()
 		}
 	}
 }
+
+void CircularDoubleList::report(string department, string corporation, string user)
+{
+	if (!isEmpty())
+	{
+		CircularDoubleNode* auxiliaryNode = firstNode->getNextNode();
+		ofstream myfile("CircularDoublyLinkedList.dot");
+		int index = 0;
+
+		if (myfile.is_open())
+		{
+			myfile << "digraph G { rankdir = LR;";
+			myfile << "node[shape=record, style=filled fillcolor=cornsilk2];";
+
+			do
+			{
+				if (auxiliaryNode->getLease()->getDepartment() == department && auxiliaryNode->getLease()->getCorporation() == corporation 
+					&& auxiliaryNode->getLease()->getUser()->getNickname() == user)
+				{
+					myfile << "N" << index;
+					myfile << "[label=\"ID: " << auxiliaryNode->getLease()->getIdentifier() << "\\n";
+					myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " "
+						<< auxiliaryNode->getLease()->getAsset()->getName() << "\\n";
+					myfile << "Departamento: " << auxiliaryNode->getLease()->getDepartment() << "\\n";
+					myfile << "Empresa: " << auxiliaryNode->getLease()->getCorporation() << "\\n";
+					myfile << "Usuario: " << auxiliaryNode->getLease()->getUser()->getName() << "\\n";
+					myfile << "Devolucion: " << auxiliaryNode->getLease()->getreturnDate() << "\"";
+					myfile << "]; ";
+					index++;
+				}
+				auxiliaryNode = auxiliaryNode->getNextNode();
+				
+			} while (auxiliaryNode != firstNode->getNextNode());
+
+			if (index > 1) 
+			{
+				for (int i = 0; i < (index - 1); i++)
+				{
+					myfile << "N" << i << " -> N" << (i + 1) << ";";
+					myfile << "N" << (i + 1) << " -> N" << i << ";";
+				}
+				myfile << "N" << 0 << " -> N" << (index - 1) << ";";
+				myfile << "N" << (index - 1) << " -> N" << 0 << ";";
+			}
+
+			myfile << "}";
+
+			myfile.close();
+			system("dot -Tpng CircularDoublyLinkedList.dot -o CircularDoublyLinkedList.png");
+			system("CircularDoublyLinkedList.png");
+		}
+		else
+		{
+			cout << "Unable to open file";
+		}
+	}
+}

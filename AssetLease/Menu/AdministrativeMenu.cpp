@@ -1,5 +1,6 @@
 #include "AdministrativeMenu.h"
 #include "../Structures/SparseMatrix/SparseMatrix.h"
+#include "../Structures/CircularDoublyLinkedList/CircularDoubleList.h"
 
 AdministrativeMenu::AdministrativeMenu()
 {
@@ -12,6 +13,7 @@ AdministrativeMenu::~AdministrativeMenu()
 void AdministrativeMenu::interfaceDesign()
 {
 	SparseMatrix *sp;
+	CircularDoubleList *cl;
 
 	string option;
 	string nickname;
@@ -34,7 +36,7 @@ void AdministrativeMenu::interfaceDesign()
 		cout << "----- 6. REPORTE ACTIVOS DE UN USUARIO" << endl;
 		cout << "----- 7. REPORTE ACTIVOS RENTADOS POR UN USUARIO" << endl;
 		cout << "----- 8. ORDENAR TRANSACCIONES" << endl;
-		cout << "----- 9. CERRAR SESION" << endl;
+		cout << "----- 0. CERRAR SESION" << endl;
 		cout << ">> ";
 		cin >> option;
 
@@ -77,6 +79,7 @@ void AdministrativeMenu::interfaceDesign()
 			sp->getInstance()->printAssetsByCorporation(corporation);
 			break;
 		case '5':
+			cl->getInstance()->report();
 			break;
 		case '6':
 			cout << "                         NOMBRE DE USUARIO" << endl;
@@ -91,12 +94,12 @@ void AdministrativeMenu::interfaceDesign()
 			getline(cin, corporation);
 			if (sp->getInstance()->getNode(department, corporation) != nullptr)
 			{
-				if (sp->getInstance()->getNode(department, corporation)->getUserList()->searchNode(nickname, password) != nullptr)
+				if (sp->getInstance()->getNode(department, corporation)->getUserList()->searchNode(nickname) != nullptr)
 				{
 					sp->getInstance()
 						->getNode(department, corporation)
 						->getUserList()
-						->searchNode(nickname, password)
+						->searchNode(nickname)
 						->getUser()
 						->getAssetAVL()
 						->report(nickname, department, corporation);
@@ -104,10 +107,21 @@ void AdministrativeMenu::interfaceDesign()
 			}
 			break;
 		case '7':
+			cout << "                         NOMBRE DE USUARIO" << endl;
+			cout << ">> ";
+			cin.ignore();
+			getline(cin, nickname);
+			cout << "                           DEPARTAMENTO" << endl;
+			cout << ">> ";
+			getline(cin, department);
+			cout << "                             EMPRESA" << endl;
+			cout << ">> ";
+			getline(cin, corporation);
+			cl->getInstance()->report(department, corporation, nickname);
 			break;
 		case '8':
 			break;
-		case '9':
+		case '0':
 			return;
 		default:
 			cout << ">> OPCION INCORRECTA" << endl;

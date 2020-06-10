@@ -31,6 +31,21 @@ User *Lease::getUser() const
 	return user;
 }
 
+string Lease::getDepartment()
+{
+	return department;
+}
+
+string Lease::getCorporation()
+{
+	return corporation;
+}
+
+string Lease::getLeaseDate()
+{
+	return leaseDate;
+}
+
 string Lease::getreturnDate()
 {
 	return returnDate;

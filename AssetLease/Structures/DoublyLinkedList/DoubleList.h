@@ -28,7 +28,7 @@ public:
     DoubleNode *searchNode(string nickname);
     DoubleNode *searchNode(string nickname, string password);
     bool isEmpty();
-    void report();
+    void report(string department, string corporation);
 
     void readStartNodes();
     void readEndNodes();

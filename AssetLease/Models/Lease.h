@@ -25,6 +25,9 @@ public:
 	string getIdentifier();
 	Asset *getAsset() const;
 	User *getUser() const;
+	string getDepartment();
+	string getCorporation();
+	string getLeaseDate();
 	string getreturnDate();
 };
 

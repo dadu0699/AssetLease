@@ -60,6 +60,8 @@ void Menu::interfaceDesign()
 												 ->getUserList()
 												 ->searchNode(nickname, password)
 												 ->getUser());
+				user->getInstance()->setCorporation(corporation);
+				user->getInstance()->serDepartment(department);
 				userMenu->interfaceDesign();
 			}
 			else

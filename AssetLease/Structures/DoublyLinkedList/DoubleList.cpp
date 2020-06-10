@@ -117,7 +117,7 @@ DoubleNode *DoubleList::searchNode(string nickname)
     DoubleNode *auxiliaryNode = firstNode;
     while (auxiliaryNode != nullptr)
     {
-        if (auxiliaryNode->getUser()->getNickname() != nickname) {
+        if (auxiliaryNode->getUser()->getNickname() == nickname) {
             return auxiliaryNode;
         }
         auxiliaryNode = auxiliaryNode->getNextNode();
@@ -138,7 +138,7 @@ DoubleNode *DoubleList::searchNode(string nickname, string password)
     return auxiliaryNode;
 }
 
-void DoubleList::report()
+void DoubleList::report(string department, string corporation)
 {
     if (!isEmpty())
     {
@@ -149,6 +149,7 @@ void DoubleList::report()
         if (myfile.is_open())
         {
             myfile << "digraph G { rankdir = LR;";
+            myfile << "graph[label = \"(" + department + ", " + corporation + ")\", labelloc=t, fontsize=30];";
             myfile << "node[shape=record, style=filled fillcolor=cornsilk2];";
 
             while (auxiliaryNode != nullptr)
@@ -156,7 +157,7 @@ void DoubleList::report()
                 myfile << "N" << index << " [label =\""
                        << "Usuario: " << auxiliaryNode->getUser()->getNickname() << "\\n"
                        << "Nombre: " << auxiliaryNode->getUser()->getName() << "\\n"
-                       //<< "Contrasena: " << auxiliaryNode->getUser()->getPassword()
+                       << "Contrasena: " << auxiliaryNode->getUser()->getPassword()
                        << "\"];";
                 auxiliaryNode = auxiliaryNode->getNextNode();
                 index++;

@@ -144,7 +144,8 @@ void UserMenu::interfaceDesign()
 					{
 						asset->getAsset()->setLease(true);
 						dbList->getInstance()->addNode(new Lease(asset->getAsset(), 
-							us->getInstance()->getUser(), department, corporation, description));
+							us->getInstance()->getUser(), us->getInstance()->getDepartment(), 
+							us->getInstance()->getCorporation(), description));
 					}
 					dbN = dbN->getNextNode();
 				}
