@@ -256,12 +256,12 @@ void AVLTree::inOrder(AVLTreeNode *root)
 	if (root != nullptr)
 	{
 		inOrder(root->getLeftNode());
-		if (!root->getAsset()->getLease()) 
+		if (!root->getAsset()->getLease())
 		{
 			cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
-				<< "Nombre = " << root->getAsset()->getName() << "; "
-				<< "Descripcion = " << root->getAsset()->getDescription() << "; "
-				<< endl;
+				 << "Nombre = " << root->getAsset()->getName() << "; "
+				 << "Descripcion = " << root->getAsset()->getDescription() << "; "
+				 << endl;
 		}
 		inOrder(root->getRightNode());
 	}
@@ -272,7 +272,7 @@ void AVLTree::inOrderM()
 	inOrderM(root);
 }
 
-void AVLTree::inOrderM(AVLTreeNode* root)
+void AVLTree::inOrderM(AVLTreeNode *root)
 {
 	if (root != nullptr)
 	{
@@ -280,9 +280,9 @@ void AVLTree::inOrderM(AVLTreeNode* root)
 		if (root->getAsset()->getLease())
 		{
 			cout << ">> ID = " << root->getAsset()->getIdentifier() << "; "
-				<< "Nombre = " << root->getAsset()->getName() << "; "
-				<< "Descripcion = " << root->getAsset()->getDescription() << "; "
-				<< endl;
+				 << "Nombre = " << root->getAsset()->getName() << "; "
+				 << "Descripcion = " << root->getAsset()->getDescription() << "; "
+				 << endl;
 		}
 		inOrderM(root->getRightNode());
 	}

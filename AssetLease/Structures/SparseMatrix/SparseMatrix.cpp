@@ -216,11 +216,11 @@ void SparseMatrix::printAssetsByDepartment(string department)
 
 void SparseMatrix::printAssetsByCorporation(string corporation)
 {
-    SparseMatrixNode* departmentNode = searchRow(corporation);
+    SparseMatrixNode *departmentNode = searchRow(corporation);
 
     if (departmentNode != nullptr)
     {
-        SparseMatrixNode* auxiliaryNode = departmentNode->getNextNode();
+        SparseMatrixNode *auxiliaryNode = departmentNode->getNextNode();
 
         while (auxiliaryNode != nullptr)
         {
@@ -235,15 +235,15 @@ void SparseMatrix::printAssetsByCorporation(string corporation)
 
 void SparseMatrix::printCatalogue()
 {
-    SparseMatrixNode* auxiliaryColumn = root->getNextNode();
-    SparseMatrixNode* auxiliaryNode = auxiliaryColumn;
-    
+    SparseMatrixNode *auxiliaryColumn = root->getNextNode();
+    SparseMatrixNode *auxiliaryNode = auxiliaryColumn;
+
     while (auxiliaryColumn != nullptr)
     {
         cout << "----- DEPARTAMENTO: " << auxiliaryColumn->getName() << endl;
         while (auxiliaryNode != nullptr)
         {
-            if (auxiliaryNode->getName().size() == 0) 
+            if (auxiliaryNode->getName().size() == 0)
             {
                 cout << "------- EMPRESA: " << auxiliaryNode->getYCorporation() << endl;
                 auxiliaryNode->getUserList()->readStartNodes();
@@ -324,7 +324,7 @@ void SparseMatrix::report()
                     myfile << "C" << auxiliaryNode->getXDepartment();
                     myfile << "R" << auxiliaryNode->getYCorporation();
                     myfile << " [label = \"" << auxiliaryNode->getUserList()->getFirstNode()->getUser()->getNickname() << "\" width = 1.5,";
-                    // 
+                    //
                     system("pause");
                     auxiliaryNode->getUserList()->report(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
                     //

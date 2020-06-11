@@ -6,9 +6,9 @@ CircularDoubleList::CircularDoubleList()
 	lastNode = nullptr;
 }
 
-CircularDoubleList* CircularDoubleList::instance = nullptr;
+CircularDoubleList *CircularDoubleList::instance = nullptr;
 
-CircularDoubleList* CircularDoubleList::getInstance()
+CircularDoubleList *CircularDoubleList::getInstance()
 {
 	if (instance == nullptr)
 	{
@@ -60,10 +60,11 @@ void CircularDoubleList::readStartNodes(User *user)
 		CircularDoubleNode *auxiliaryNode = firstNode;
 		do
 		{
-			if (auxiliaryNode->getLease()->getUser()->getName() == user->getName()) {
+			if (auxiliaryNode->getLease()->getUser()->getName() == user->getName())
+			{
 				cout << "ID: " << auxiliaryNode->getLease()->getIdentifier();
 				cout << " NOMBRE: " << auxiliaryNode->getLease()->getAsset()->getIdentifier()
-					<< " " << auxiliaryNode->getLease()->getAsset()->getName();
+					 << " " << auxiliaryNode->getLease()->getAsset()->getName();
 				cout << " TIEMPO RENTA: " << auxiliaryNode->getLease()->getIdentifier();
 				cout << endl;
 			}
@@ -144,7 +145,7 @@ void CircularDoubleList::report()
 {
 	if (!isEmpty())
 	{
-		CircularDoubleNode *auxiliaryNode = firstNode->getNextNode();
+		CircularDoubleNode *auxiliaryNode = firstNode;
 		ofstream myfile("CircularDoublyLinkedList.dot");
 		int index = 0;
 
@@ -155,6 +156,7 @@ void CircularDoubleList::report()
 
 			do
 			{
+				// cout << auxiliaryNode->getLease()->getIdentifier() << " - ";
 				myfile << "N" << index;
 				myfile << "[label=\"ID: " << auxiliaryNode->getLease()->getIdentifier() << "\\n";
 				myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " "
@@ -164,7 +166,7 @@ void CircularDoubleList::report()
 				myfile << "]; ";
 				auxiliaryNode = auxiliaryNode->getNextNode();
 				index++;
-			} while (auxiliaryNode != firstNode->getNextNode());
+			} while (auxiliaryNode != firstNode);
 
 			for (int i = 0; i < (index - 1); i++)
 			{
@@ -191,7 +193,7 @@ void CircularDoubleList::report(string department, string corporation, string us
 {
 	if (!isEmpty())
 	{
-		CircularDoubleNode* auxiliaryNode = firstNode->getNextNode();
+		CircularDoubleNode *auxiliaryNode = firstNode;
 		ofstream myfile("CircularDoublyLinkedList.dot");
 		int index = 0;
 
@@ -202,13 +204,12 @@ void CircularDoubleList::report(string department, string corporation, string us
 
 			do
 			{
-				if (auxiliaryNode->getLease()->getDepartment() == department && auxiliaryNode->getLease()->getCorporation() == corporation 
-					&& auxiliaryNode->getLease()->getUser()->getNickname() == user)
+				if (auxiliaryNode->getLease()->getDepartment() == department && auxiliaryNode->getLease()->getCorporation() == corporation && auxiliaryNode->getLease()->getUser()->getNickname() == user)
 				{
 					myfile << "N" << index;
 					myfile << "[label=\"ID: " << auxiliaryNode->getLease()->getIdentifier() << "\\n";
 					myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " "
-						<< auxiliaryNode->getLease()->getAsset()->getName() << "\\n";
+						   << auxiliaryNode->getLease()->getAsset()->getName() << "\\n";
 					myfile << "Departamento: " << auxiliaryNode->getLease()->getDepartment() << "\\n";
 					myfile << "Empresa: " << auxiliaryNode->getLease()->getCorporation() << "\\n";
 					myfile << "Usuario: " << auxiliaryNode->getLease()->getUser()->getName() << "\\n";
@@ -217,10 +218,10 @@ void CircularDoubleList::report(string department, string corporation, string us
 					index++;
 				}
 				auxiliaryNode = auxiliaryNode->getNextNode();
-				
-			} while (auxiliaryNode != firstNode->getNextNode());
 
-			if (index > 1) 
+			} while (auxiliaryNode != firstNode);
+
+			if (index > 1)
 			{
 				for (int i = 0; i < (index - 1); i++)
 				{
@@ -240,6 +241,55 @@ void CircularDoubleList::report(string department, string corporation, string us
 		else
 		{
 			cout << "Unable to open file";
+		}
+	}
+}
+
+void CircularDoubleList::sortAscending()
+{
+	CircularDoubleNode *current;
+	CircularDoubleNode *index;
+	Lease *temp;
+
+	if (!isEmpty())
+	{
+		for (current = firstNode; current->getNextNode() != firstNode; current = current->getNextNode())
+		{
+			// cout << " * " << current->getLease()->getIdentifier() << endl;
+			for (index = current->getNextNode(); index != firstNode; index = index->getNextNode())
+			{
+				// cout << "   - " << current->getLease()->getIdentifier() << " > " << index->getLease()->getIdentifier() << endl;
+				if (current->getLease()->getIdentifier() > index->getLease()->getIdentifier())
+				{
+					temp = current->getLease();
+					current->setLease(index->getLease());
+					index->setLease(temp);
+					// cout << "    CAMBIO " << current->getLease()->getIdentifier() << " > " << index->getLease()->getIdentifier() << endl;
+				}
+			}
+		}
+	}
+}
+
+void CircularDoubleList::sortDescending()
+{
+	CircularDoubleNode *current;
+	CircularDoubleNode *index;
+	Lease *temp;
+
+	if (!isEmpty())
+	{
+		for (current = firstNode; current->getNextNode() != firstNode; current = current->getNextNode())
+		{
+			for (index = current->getNextNode(); index != firstNode; index = index->getNextNode())
+			{
+				if (current->getLease()->getIdentifier() < index->getLease()->getIdentifier())
+				{
+					temp = current->getLease();
+					current->setLease(index->getLease());
+					index->setLease(temp);
+				}
+			}
 		}
 	}
 }

@@ -35,7 +35,8 @@ void AdministrativeMenu::interfaceDesign()
 		cout << "----- 5. REPORTE TRANSACCIONES" << endl;
 		cout << "----- 6. REPORTE ACTIVOS DE UN USUARIO" << endl;
 		cout << "----- 7. REPORTE ACTIVOS RENTADOS POR UN USUARIO" << endl;
-		cout << "----- 8. ORDENAR TRANSACCIONES" << endl;
+		cout << "----- 8. ORDENAR TRANSACCIONES ASCENDENTE" << endl;
+		cout << "----- 9. ORDENAR TRANSACCIONES DESCENDENTE" << endl;
 		cout << "----- 0. CERRAR SESION" << endl;
 		cout << ">> ";
 		cin >> option;
@@ -120,6 +121,10 @@ void AdministrativeMenu::interfaceDesign()
 			cl->getInstance()->report(department, corporation, nickname);
 			break;
 		case '8':
+			cl->getInstance()->sortAscending();
+			break;
+		case '9':
+			cl->getInstance()->sortDescending();
 			break;
 		case '0':
 			return;

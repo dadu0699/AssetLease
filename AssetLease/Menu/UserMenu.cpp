@@ -140,12 +140,12 @@ void UserMenu::interfaceDesign()
 				while (dbN != nullptr)
 				{
 					asset = dbN->getUser()->getAssetAVL()->search(name);
-					if (asset != nullptr) 
+					if (asset != nullptr)
 					{
 						asset->getAsset()->setLease(true);
-						dbList->getInstance()->addNode(new Lease(asset->getAsset(), 
-							us->getInstance()->getUser(), us->getInstance()->getDepartment(), 
-							us->getInstance()->getCorporation(), description));
+						dbList->getInstance()->addNode(new Lease(asset->getAsset(),
+																 us->getInstance()->getUser(), us->getInstance()->getDepartment(),
+																 us->getInstance()->getCorporation(), description));
 					}
 					dbN = dbN->getNextNode();
 				}
@@ -157,12 +157,15 @@ void UserMenu::interfaceDesign()
 			cout << "----------------------------------------------------------------------" << endl;
 			cout << "|                          DEVOLVER ACTIVO                           |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
-			dbList->getInstance()->readStartNodes(us->getInstance()->getUser());			
+			dbList->getInstance()->readStartNodes(us->getInstance()->getUser());
 			cout << "                                ID" << endl;
 			cout << ">> ";
 			cin.ignore();
 			getline(cin, name);
-			dbList->getInstance()->deleteSpecificNode(name);
+			if (dbList->getInstance()->searchNode(name))
+			{
+				dbList->getInstance()->deleteSpecificNode(name);
+			}
 			system("pause");
 			break;
 		case '6':
