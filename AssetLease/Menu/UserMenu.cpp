@@ -24,7 +24,6 @@ void UserMenu::interfaceDesign()
 	string department;
 	string corporation;
 	string description;
-	Lease *lease;
 	DoubleNode *dbN;
 	SparseMatrixNode *spN;
 
