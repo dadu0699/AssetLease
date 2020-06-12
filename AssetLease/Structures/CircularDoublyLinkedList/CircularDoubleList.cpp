@@ -85,7 +85,8 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 			auxiliaryNode->getLease()->setState(false);
 		}
 
-		/*if (firstNode == auxiliaryNode)
+		/*
+		if (firstNode == auxiliaryNode)
 		{
 			if (firstNode == lastNode)
 			{
@@ -119,7 +120,8 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 			CircularDoubleNode *nextNode = auxiliaryNode->getNextNode();
 			previousNode->setNextNode(nextNode);
 			nextNode->setPreviousNode(previousNode);
-		}*/
+		}
+		*/
 	}
 }
 

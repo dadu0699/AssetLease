@@ -346,6 +346,7 @@ void AVLTree::report(string user, string department, string corporation)
 	if (myfile.is_open())
 	{
 		myfile << "digraph G { ";
+		myfile << "node[style=filled fillcolor=cornsilk2];";
 		myfile << "graph[label = \"(" + user + ", " + department + ", " + corporation + ")\", labelloc=t, fontsize=30];";
 		indexNode = 0;
 		myfile << report(root);

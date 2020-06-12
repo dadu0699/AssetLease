@@ -146,6 +146,7 @@ void UserMenu::interfaceDesign()
 						dbList->getInstance()->addNode(new Lease(asset->getAsset(),
 																 us->getInstance()->getUser(), us->getInstance()->getDepartment(),
 																 us->getInstance()->getCorporation(), description));
+						cout << ">> Transasccion realizada";
 					}
 					dbN = dbN->getNextNode();
 				}
@@ -154,6 +155,7 @@ void UserMenu::interfaceDesign()
 			system("pause");
 			break;
 		case '5':
+			system("CLS");
 			cout << "----------------------------------------------------------------------" << endl;
 			cout << "|                          DEVOLVER ACTIVO                           |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
@@ -169,6 +171,7 @@ void UserMenu::interfaceDesign()
 			system("pause");
 			break;
 		case '6':
+			system("CLS");
 			cout << "----------------------------------------------------------------------" << endl;
 			cout << "|                          ACTIVOS RENTADOS                          |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
@@ -176,6 +179,7 @@ void UserMenu::interfaceDesign()
 			system("pause");
 			break;
 		case '7':
+			system("CLS");
 			cout << "----------------------------------------------------------------------" << endl;
 			cout << "|                        MIS ACTIVOS RENTADOS                        |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
