@@ -11,7 +11,7 @@ int main()
     srand(time(NULL));
     SparseMatrix *sparseMatrix;
     User* u1 = new User("dadu", "123", "Didier Dominguez");
-    User* u2 = new User("jacky", "123", "Jacqueline Mendez");
+    User* u2 = new User("petit", "123", "Mehdi Benjelloun");
     User* u3 = new User("robin", "123", "Robin Schulz");
     User* u4 = new User("lost", "123", "Felix De Laet");
     User* u5 = new User("alan", "123", "Alan Olav Walker");
