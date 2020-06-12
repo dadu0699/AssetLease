@@ -60,7 +60,7 @@ void CircularDoubleList::readStartNodes(User *user)
 		CircularDoubleNode *auxiliaryNode = firstNode;
 		do
 		{
-			if (auxiliaryNode->getLease()->getUser()->getName() == user->getName())
+			if (auxiliaryNode->getLease()->getUser()->getName() == user->getName() && auxiliaryNode->getLease()->getState())
 			{
 				cout << "ID: " << auxiliaryNode->getLease()->getIdentifier();
 				cout << " NOMBRE: " << auxiliaryNode->getLease()->getAsset()->getIdentifier()
@@ -78,8 +78,14 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 	if (!isEmpty())
 	{
 		CircularDoubleNode *auxiliaryNode = searchNode(identifier);
-		auxiliaryNode->getLease()->getAsset()->setLease(false);
-		if (firstNode == auxiliaryNode)
+
+		if (auxiliaryNode != nullptr) 
+		{
+			auxiliaryNode->getLease()->getAsset()->setLease(false);
+			auxiliaryNode->getLease()->setState(false);
+		}
+
+		/*if (firstNode == auxiliaryNode)
 		{
 			if (firstNode == lastNode)
 			{
@@ -113,7 +119,7 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 			CircularDoubleNode *nextNode = auxiliaryNode->getNextNode();
 			previousNode->setNextNode(nextNode);
 			nextNode->setPreviousNode(previousNode);
-		}
+		}*/
 	}
 }
 

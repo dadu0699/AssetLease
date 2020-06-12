@@ -17,6 +17,7 @@ private:
 	string corporation;
 	string leaseDate;
 	string returnDate;
+	bool state;
 
 public:
 	Lease(Asset *asset, User *user, string department, string corporation, string returnDate);
@@ -29,6 +30,8 @@ public:
 	string getCorporation();
 	string getLeaseDate();
 	string getreturnDate();
+	bool getState();
+	void setState(bool state);
 };
 
 #endif // USER_H

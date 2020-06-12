@@ -7,6 +7,7 @@ Lease::Lease(Asset *asset, User *user, string department, string corporation, st
 	this->asset = asset;
 	this->user = user;
 	this->department = department;
+	this->state = true;
 	this->corporation = corporation;
 	this->returnDate = returnDate;
 	this->leaseDate = "";
@@ -49,4 +50,14 @@ string Lease::getLeaseDate()
 string Lease::getreturnDate()
 {
 	return returnDate;
+}
+
+bool Lease::getState()
+{
+	return state;
+}
+
+void Lease::setState(bool state)
+{
+	this->state = state;
 }
