@@ -325,7 +325,6 @@ void SparseMatrix::report()
                     myfile << "R" << auxiliaryNode->getYCorporation();
                     myfile << " [label = \"" << auxiliaryNode->getUserList()->getFirstNode()->getUser()->getNickname() << "\" width = 1.5,";
                     //
-                    system("pause");
                     auxiliaryNode->getUserList()->report(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
                     //
                     myfile << " style = filled, fillcolor = cornsilk2,";

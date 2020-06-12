@@ -145,7 +145,7 @@ void DoubleList::report(string department, string corporation)
     if (!isEmpty())
     {
         DoubleNode *auxiliaryNode = firstNode;
-        ofstream myfile("DoublyLinkedList.dot");
+        ofstream myfile(department + corporation + ".dot");
         int index = 0;
 
         if (myfile.is_open())
@@ -174,8 +174,8 @@ void DoubleList::report(string department, string corporation)
             myfile << "}";
 
             myfile.close();
-            system("dot -Tpng DoublyLinkedList.dot -o DoublyLinkedList.png");
-            system("DoublyLinkedList.png");
+            system(("dot -Tpng " + department + corporation +".dot -o " + department + corporation + ".png").c_str());
+            system((department + corporation + ".png").c_str());
         }
         else
         {
@@ -219,7 +219,6 @@ void DoubleList::printAssets(string department, string corporation)
         DoubleNode *auxiliaryNode = firstNode;
         while (auxiliaryNode != nullptr)
         {
-            system("pause");
             auxiliaryNode->getUser()->getAssetAVL()->report(auxiliaryNode->getUser()->getNickname(), department, corporation);
             auxiliaryNode = auxiliaryNode->getNextNode();
         }
