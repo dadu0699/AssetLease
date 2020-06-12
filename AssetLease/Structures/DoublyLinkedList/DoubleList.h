@@ -30,7 +30,7 @@ public:
     bool isEmpty();
     void report(string department, string corporation);
 
-    void readStartNodes();
+    void readStartNodes(string nickName, string password);
     void readEndNodes();
     void printAssets(string department, string corporation);
 };

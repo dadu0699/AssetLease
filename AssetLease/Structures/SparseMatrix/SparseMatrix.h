@@ -30,7 +30,7 @@ public:
     void printColumnHeaders();
     void printAssetsByDepartment(string department);
     void printAssetsByCorporation(string corporation);
-    void printCatalogue();
+    void printCatalogue(string nickName, string password);
 };
 
 #endif // SPARSEMATRIX_H

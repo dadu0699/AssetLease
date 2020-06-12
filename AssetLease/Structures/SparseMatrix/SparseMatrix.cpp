@@ -233,7 +233,7 @@ void SparseMatrix::printAssetsByCorporation(string corporation)
     }
 }
 
-void SparseMatrix::printCatalogue()
+void SparseMatrix::printCatalogue(string nickName, string password)
 {
     SparseMatrixNode *auxiliaryColumn = root->getNextNode();
     SparseMatrixNode *auxiliaryNode = auxiliaryColumn;
@@ -246,7 +246,7 @@ void SparseMatrix::printCatalogue()
             if (auxiliaryNode->getName().size() == 0)
             {
                 cout << "------- EMPRESA: " << auxiliaryNode->getYCorporation() << endl;
-                auxiliaryNode->getUserList()->readStartNodes();
+                auxiliaryNode->getUserList()->readStartNodes(nickName, password);
             }
             auxiliaryNode = auxiliaryNode->getDownNode();
         }

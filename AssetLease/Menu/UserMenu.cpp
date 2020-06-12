@@ -115,7 +115,8 @@ void UserMenu::interfaceDesign()
 			cout << "----------------------------------------------------------------------" << endl;
 			cout << "|                         CATALOGO ACTIVOS                           |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;
-			sp->getInstance()->printCatalogue();
+			sp->getInstance()->printCatalogue(us->getInstance()->getUser()->getNickname(), 
+				us->getInstance()->getUser()->getPassword());
 			cout << "----------------------------------------------------------------------" << endl;
 			cout << "|                          RENTAR ACTIVO                             |" << endl;
 			cout << "----------------------------------------------------------------------" << endl;

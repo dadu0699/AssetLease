@@ -184,14 +184,17 @@ void DoubleList::report(string department, string corporation)
     }
 }
 
-void DoubleList::readStartNodes()
+void DoubleList::readStartNodes(string nickName, string password)
 {
     if (!isEmpty())
     {
         DoubleNode *auxiliaryNode = firstNode;
         while (auxiliaryNode != nullptr)
         {
-            auxiliaryNode->getUser()->getAssetAVL()->inOrder();
+            if (!(auxiliaryNode->getUser()->getNickname() == nickName && auxiliaryNode->getUser()->getPassword() == password))
+            {
+                auxiliaryNode->getUser()->getAssetAVL()->inOrder();
+            }
             auxiliaryNode = auxiliaryNode->getNextNode();
         }
         cout << endl;
