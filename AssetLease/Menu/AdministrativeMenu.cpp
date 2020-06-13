@@ -44,6 +44,7 @@ void AdministrativeMenu::interfaceDesign()
 		switch (option[0])
 		{
 		case '1':
+			system("cls");
 			cout << "                         NOMBRE DE USUARIO" << endl;
 			cout << ">> ";
 			cin.ignore();
@@ -66,6 +67,7 @@ void AdministrativeMenu::interfaceDesign()
 			sp->getInstance()->report();
 			break;
 		case '3':
+			system("cls");
 			cout << "                           DEPARTAMENTO" << endl;
 			cout << ">> ";
 			cin.ignore();
@@ -73,6 +75,7 @@ void AdministrativeMenu::interfaceDesign()
 			sp->getInstance()->printAssetsByDepartment(department);
 			break;
 		case '4':
+			system("cls");
 			cout << "                             EMPRESA" << endl;
 			cout << ">> ";
 			cin.ignore();
@@ -83,6 +86,7 @@ void AdministrativeMenu::interfaceDesign()
 			cl->getInstance()->report();
 			break;
 		case '6':
+			system("cls");
 			cout << "                         NOMBRE DE USUARIO" << endl;
 			cout << ">> ";
 			cin.ignore();
@@ -108,6 +112,7 @@ void AdministrativeMenu::interfaceDesign()
 			}
 			break;
 		case '7':
+			system("cls");
 			cout << "                         NOMBRE DE USUARIO" << endl;
 			cout << ">> ";
 			cin.ignore();

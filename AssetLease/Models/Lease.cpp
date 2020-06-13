@@ -1,6 +1,8 @@
 #include "Lease.h"
 #include "../Controllers/IDGenerator.h"
 
+#include <Windows.h>
+
 Lease::Lease(Asset *asset, User *user, string department, string corporation, string returnDate)
 {
 	this->identifier = IDGenerator().getID();
@@ -10,7 +12,10 @@ Lease::Lease(Asset *asset, User *user, string department, string corporation, st
 	this->state = true;
 	this->corporation = corporation;
 	this->returnDate = returnDate;
-	this->leaseDate = "";
+
+	SYSTEMTIME times;
+	GetLocalTime(&times);
+	this->leaseDate = to_string(times.wDay) + "/" + to_string(times.wMonth) + "/" + to_string(times.wYear);
 }
 
 Lease::~Lease()

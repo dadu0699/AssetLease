@@ -169,6 +169,7 @@ void CircularDoubleList::report()
 				myfile << "[label=\"ID: " << auxiliaryNode->getLease()->getIdentifier() << "\\n";
 				myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " "
 					   << auxiliaryNode->getLease()->getAsset()->getName() << "\\n";
+				myfile << "Fecha: " << auxiliaryNode->getLease()->getLeaseDate() << "\\n";
 				myfile << "Usuario: " << auxiliaryNode->getLease()->getUser()->getName() << "\\n";
 				myfile << "Devolucion: " << auxiliaryNode->getLease()->getreturnDate() << "\"";
 				myfile << "]; ";
@@ -218,6 +219,7 @@ void CircularDoubleList::report(string department, string corporation, string us
 					myfile << "[label=\"ID: " << auxiliaryNode->getLease()->getIdentifier() << "\\n";
 					myfile << "Activo: " << auxiliaryNode->getLease()->getAsset()->getIdentifier() << " "
 						   << auxiliaryNode->getLease()->getAsset()->getName() << "\\n";
+					myfile << "Fecha: " << auxiliaryNode->getLease()->getLeaseDate() << "\\n";
 					myfile << "Departamento: " << auxiliaryNode->getLease()->getDepartment() << "\\n";
 					myfile << "Empresa: " << auxiliaryNode->getLease()->getCorporation() << "\\n";
 					myfile << "Usuario: " << auxiliaryNode->getLease()->getUser()->getName() << "\\n";
