@@ -341,7 +341,7 @@ string AVLTree::reportRightNode(AVLTreeNode *root, int indexParentNode)
 
 void AVLTree::report(string user, string department, string corporation)
 {
-	ofstream myfile(user + department +  corporation + ".dot");
+	ofstream myfile(user + department + corporation + ".dot");
 
 	if (myfile.is_open())
 	{

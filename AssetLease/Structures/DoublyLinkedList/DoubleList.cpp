@@ -174,7 +174,7 @@ void DoubleList::report(string department, string corporation)
             myfile << "}";
 
             myfile.close();
-            system(("dot -Tpng " + department + corporation +".dot -o " + department + corporation + ".png").c_str());
+            system(("dot -Tpng " + department + corporation + ".dot -o " + department + corporation + ".png").c_str());
             system((department + corporation + ".png").c_str());
         }
         else

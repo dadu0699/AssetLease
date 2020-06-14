@@ -79,7 +79,7 @@ void CircularDoubleList::deleteSpecificNode(string identifier)
 	{
 		CircularDoubleNode *auxiliaryNode = searchNode(identifier);
 
-		if (auxiliaryNode != nullptr) 
+		if (auxiliaryNode != nullptr)
 		{
 			auxiliaryNode->getLease()->getAsset()->setLease(false);
 			auxiliaryNode->getLease()->setState(false);

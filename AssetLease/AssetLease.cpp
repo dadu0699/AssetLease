@@ -10,19 +10,19 @@ int main()
 {
     srand(time(NULL));
     SparseMatrix *sparseMatrix;
-    User* u1 = new User("dadu", "123", "Didier Dominguez");
-    User* u2 = new User("petit", "123", "Mehdi Benjelloun");
-    User* u3 = new User("robin", "123", "Robin Schulz");
-    User* u4 = new User("lost", "123", "Felix De Laet");
-    User* u5 = new User("alan", "123", "Alan Olav Walker");
-    User* u6 = new User("kygo", "123", "Kyrre Gorvell-Dahll");
-    User* u7 = new User("zed", "123", "Anton Zaslavski");
+    User *u1 = new User("dadu", "123", "Didier Dominguez");
+    User *u2 = new User("petit", "123", "Mehdi Benjelloun");
+    User *u3 = new User("robin", "123", "Robin Schulz");
+    User *u4 = new User("lost", "123", "Felix De Laet");
+    User *u5 = new User("alan", "123", "Alan Olav Walker");
+    User *u6 = new User("kygo", "123", "Kyrre Gorvell-Dahll");
+    User *u7 = new User("zed", "123", "Anton Zaslavski");
 
     sparseMatrix->getInstance()->addNode("guatemala", "hp", u1);
     sparseMatrix->getInstance()->addNode("guatemala", "dell", u2);
     sparseMatrix->getInstance()->addNode("jalapa", "arbolitos", u3);
     sparseMatrix->getInstance()->addNode("peten", "national", u4);
-    sparseMatrix->getInstance()->addNode("jutiapa", "arbolitos",u5);
+    sparseMatrix->getInstance()->addNode("jutiapa", "arbolitos", u5);
     sparseMatrix->getInstance()->addNode("jalapa", "arbolitos", u6);
     sparseMatrix->getInstance()->addNode("guatemala", "hp", u7);
 
