@@ -54,20 +54,17 @@ SparseMatrixNode *SparseMatrix::searchRow(string yCorporation)
 
 SparseMatrixNode *SparseMatrix::createColumn(string xDepartment)
 {
-    SparseMatrixNode *column = insertIntoColumn(new SparseMatrixNode(xDepartment, "-1", xDepartment), root);
-    return column;
+    return insertIntoColumn(new SparseMatrixNode(xDepartment, "-1", xDepartment), root);
 }
 
 SparseMatrixNode *SparseMatrix::createRow(string yCorporation)
 {
-    SparseMatrixNode *row = insertIntoRow(new SparseMatrixNode("-1", yCorporation, yCorporation), root);
-    return row;
+    return insertIntoRow(new SparseMatrixNode("-1", yCorporation, yCorporation), root);
 }
 
 SparseMatrixNode *SparseMatrix::insertIntoColumn(SparseMatrixNode *node, SparseMatrixNode *headerRow)
 {
     SparseMatrixNode *temp = headerRow;
-    bool flag = false;
 
     while (true)
     {
@@ -77,8 +74,11 @@ SparseMatrixNode *SparseMatrix::insertIntoColumn(SparseMatrixNode *node, SparseM
         }
         else if (temp->getXDepartment() > node->getXDepartment())
         {
-            flag = true;
-            break;
+            node->setNextNode(temp);
+            temp->getPreviousNode()->setNextNode(node);
+            node->setPreviousNode(temp->getPreviousNode());
+            temp->setPreviousNode(node);
+            return node;
         }
 
         if (temp->getNextNode() != nullptr)
@@ -87,30 +87,18 @@ SparseMatrixNode *SparseMatrix::insertIntoColumn(SparseMatrixNode *node, SparseM
         }
         else
         {
-            // flag = false;
             break;
         }
     }
 
-    if (flag)
-    {
-        node->setNextNode(temp);
-        temp->getPreviousNode()->setNextNode(node);
-        node->setPreviousNode(temp->getPreviousNode());
-        temp->setPreviousNode(node);
-    }
-    else
-    {
-        temp->setNextNode(node);
-        node->setPreviousNode(temp);
-    }
+    temp->setNextNode(node);
+    node->setPreviousNode(temp);
     return node;
 }
 
 SparseMatrixNode *SparseMatrix::insertIntoRow(SparseMatrixNode *node, SparseMatrixNode *headerColumn)
 {
     SparseMatrixNode *temp = headerColumn;
-    bool flag = false;
 
     while (true)
     {
@@ -120,8 +108,11 @@ SparseMatrixNode *SparseMatrix::insertIntoRow(SparseMatrixNode *node, SparseMatr
         }
         else if (temp->getYCorporation() > node->getYCorporation())
         {
-            flag = true;
-            break;
+            node->setDownNode(temp);
+            temp->getUpNode()->setDownNode(node);
+            node->setUpNode(temp->getUpNode());
+            temp->setUpNode(node);
+            return node;
         }
 
         if (temp->getDownNode() != nullptr)
@@ -134,18 +125,8 @@ SparseMatrixNode *SparseMatrix::insertIntoRow(SparseMatrixNode *node, SparseMatr
         }
     }
 
-    if (flag)
-    {
-        node->setDownNode(temp);
-        temp->getUpNode()->setDownNode(node);
-        node->setUpNode(temp->getUpNode());
-        temp->setUpNode(node);
-    }
-    else
-    {
-        temp->setDownNode(node);
-        node->setUpNode(temp);
-    }
+    temp->setDownNode(node);
+    node->setUpNode(temp);
     return node;
 }
 
