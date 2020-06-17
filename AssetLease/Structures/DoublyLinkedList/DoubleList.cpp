@@ -142,6 +142,8 @@ DoubleNode *DoubleList::searchNode(string nickname, string password)
 
 void DoubleList::report(string department, string corporation)
 {
+    replace(department.begin(), department.end(), ' ', '_');
+    replace(corporation.begin(), corporation.end(), ' ', '_');
     if (!isEmpty())
     {
         DoubleNode *auxiliaryNode = firstNode;

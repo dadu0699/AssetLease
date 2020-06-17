@@ -2,6 +2,7 @@
 #define CIRCULARDOUBLELIST_H
 
 #include <iostream>
+#include <algorithm>
 #include <fstream>
 #include "CircularDoubleNode.h"
 using namespace std;

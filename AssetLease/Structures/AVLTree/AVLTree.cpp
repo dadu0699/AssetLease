@@ -317,7 +317,7 @@ string AVLTree::report(AVLTreeNode *root)
 	return myfile;
 }
 
-string AVLTree::generalReport(AVLTreeNode* root)
+string AVLTree::generalReport(AVLTreeNode *root)
 {
 	string myfile;
 	if (root != nullptr)
@@ -373,6 +373,8 @@ string AVLTree::reportRightNode(AVLTreeNode *root, int indexParentNode)
 
 void AVLTree::report(string user, string department, string corporation)
 {
+	replace(department.begin(), department.end(), ' ', '_');
+	replace(corporation.begin(), corporation.end(), ' ', '_');
 	ofstream myfile(user + department + corporation + ".dot");
 
 	if (myfile.is_open())
@@ -395,6 +397,7 @@ void AVLTree::report(string user, string department, string corporation)
 
 string AVLTree::generalReport(string user, string department, string corporation)
 {
-	return "subgraph cluster_" + user + department + corporation + "{label = \"(" + user + ", " 
-		+ department + ", " + corporation + ")\";" + generalReport(root) + "}";
+	replace(department.begin(), department.end(), ' ', '_');
+	replace(corporation.begin(), corporation.end(), ' ', '_');
+	return "subgraph cluster_" + user + department + corporation + "{label = \"(" + user + ", " + department + ", " + corporation + ")\";" + generalReport(root) + "}";
 }

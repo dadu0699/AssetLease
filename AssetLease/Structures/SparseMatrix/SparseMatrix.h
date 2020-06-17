@@ -2,6 +2,7 @@
 #define SPARSEMATRIX_H
 
 #include <iostream>
+#include <algorithm>
 #include "SparseMatrixNode.h"
 
 class SparseMatrix
@@ -11,6 +12,7 @@ private:
     SparseMatrixNode *root;
 
     SparseMatrix();
+    string replaceSpaces(string content);
     SparseMatrixNode *searchColumn(string xDepartment);
     SparseMatrixNode *searchRow(string yCorporation);
     SparseMatrixNode *createColumn(string xDepartment);

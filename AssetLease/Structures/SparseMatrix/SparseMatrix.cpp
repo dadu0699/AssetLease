@@ -5,6 +5,12 @@ SparseMatrix::SparseMatrix()
     root = new SparseMatrixNode("-1", "-1", "ROOT");
 }
 
+string SparseMatrix::replaceSpaces(string content)
+{
+    replace(content.begin(), content.end(), ' ', '_');
+    return content;
+}
+
 SparseMatrix *SparseMatrix::instance = nullptr;
 
 SparseMatrix *SparseMatrix::getInstance()
@@ -178,6 +184,7 @@ void SparseMatrix::printColumnHeaders()
 
 void SparseMatrix::generateReport(string name, string content)
 {
+    replace(name.begin(), name.end(), ' ', '_');
     ofstream myfile(name + ".dot");
 
     if (myfile.is_open())
@@ -281,7 +288,7 @@ void SparseMatrix::report()
 
             while (rowHeaders != nullptr)
             {
-                myfile << "R" << rowHeaders->getYCorporation();
+                myfile << "R" << replaceSpaces(rowHeaders->getYCorporation());
                 myfile << "[label = \"" << rowHeaders->getYCorporation() << "\"";
                 myfile << "width = 1.5 style = filled, fillcolor = bisque, group = 1 ];";
                 rowHeaders = rowHeaders->getDownNode();
@@ -290,15 +297,15 @@ void SparseMatrix::report()
             rowHeaders = root->getDownNode();
             while (rowHeaders->getDownNode() != nullptr)
             {
-                myfile << "R" << rowHeaders->getYCorporation() << "-> R" << rowHeaders->getDownNode()->getYCorporation() << ";";
+                myfile << "R" << replaceSpaces(rowHeaders->getYCorporation()) << "-> R" << replaceSpaces(rowHeaders->getDownNode()->getYCorporation()) << ";";
                 rowHeaders = rowHeaders->getDownNode();
             }
 
             while (columnHeaders != nullptr)
             {
-                myfile << "C" << columnHeaders->getXDepartment();
+                myfile << "C" << replaceSpaces(columnHeaders->getXDepartment());
                 myfile << "[label = \"" << columnHeaders->getXDepartment() << "\"";
-                myfile << "width = 1.5 style = filled, fillcolor = bisque, group =" << columnHeaders->getXDepartment() + "2"
+                myfile << "width = 1.5 style = filled, fillcolor = bisque, group =" << replaceSpaces(columnHeaders->getXDepartment()) + "2"
                        << "];";
                 columnHeaders = columnHeaders->getNextNode();
             }
@@ -306,18 +313,18 @@ void SparseMatrix::report()
             columnHeaders = root->getNextNode();
             while (columnHeaders->getNextNode() != nullptr)
             {
-                myfile << "C" << columnHeaders->getXDepartment() << "-> C" << columnHeaders->getNextNode()->getXDepartment() << ";";
+                myfile << "C" << replaceSpaces(columnHeaders->getXDepartment()) << "-> C" << replaceSpaces(columnHeaders->getNextNode()->getXDepartment()) << ";";
                 columnHeaders = columnHeaders->getNextNode();
             }
 
-            myfile << "Mt -> R" << root->getDownNode()->getYCorporation() << ";";
-            myfile << "Mt -> C" << root->getNextNode()->getXDepartment() << ";";
+            myfile << "Mt -> R" << replaceSpaces(root->getDownNode()->getYCorporation()) << ";";
+            myfile << "Mt -> C" << replaceSpaces(root->getNextNode()->getXDepartment()) << ";";
 
             myfile << "{ rank = same; Mt;";
             columnHeaders = root->getNextNode();
             while (columnHeaders != nullptr)
             {
-                myfile << "C" << columnHeaders->getXDepartment() << ";";
+                myfile << "C" << replaceSpaces(columnHeaders->getXDepartment()) << ";";
                 columnHeaders = columnHeaders->getNextNode();
             }
             myfile << "}";
@@ -327,14 +334,14 @@ void SparseMatrix::report()
                 auxiliaryNode = auxiliaryRow->getNextNode();
                 while (auxiliaryNode != nullptr)
                 {
-                    myfile << "C" << auxiliaryNode->getXDepartment();
-                    myfile << "R" << auxiliaryNode->getYCorporation();
+                    myfile << "C" << replaceSpaces(auxiliaryNode->getXDepartment());
+                    myfile << "R" << replaceSpaces(auxiliaryNode->getYCorporation());
                     myfile << " [label = \"" << auxiliaryNode->getUserList()->getFirstNode()->getUser()->getNickname() << "\" width = 1.5,";
                     //
                     auxiliaryNode->getUserList()->report(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
                     //
                     myfile << " style = filled, fillcolor = cornsilk2,";
-                    myfile << " group = " << auxiliaryNode->getXDepartment() + "2"
+                    myfile << " group = " << replaceSpaces(auxiliaryNode->getXDepartment()) + "2"
                            << "];";
                     auxiliaryNode = auxiliaryNode->getNextNode();
                 }
@@ -349,15 +356,15 @@ void SparseMatrix::report()
                 {
                     if (auxiliaryNode->getXDepartment() == "-1")
                     {
-                        myfile << "R" << auxiliaryNode->getYCorporation();
+                        myfile << "R" << replaceSpaces(auxiliaryNode->getYCorporation());
                     }
                     else
                     {
-                        myfile << "C" << auxiliaryNode->getXDepartment();
-                        myfile << "R" << auxiliaryNode->getYCorporation();
+                        myfile << "C" << replaceSpaces(auxiliaryNode->getXDepartment());
+                        myfile << "R" << replaceSpaces(auxiliaryNode->getYCorporation());
                     }
-                    myfile << " -> C" << auxiliaryNode->getNextNode()->getXDepartment();
-                    myfile << "R" << auxiliaryNode->getNextNode()->getYCorporation() << " [dir=\"both\"];";
+                    myfile << " -> C" << replaceSpaces(auxiliaryNode->getNextNode()->getXDepartment());
+                    myfile << "R" << replaceSpaces(auxiliaryNode->getNextNode()->getYCorporation()) << " [dir=\"both\"];";
                     auxiliaryNode = auxiliaryNode->getNextNode();
                 }
 
@@ -367,12 +374,12 @@ void SparseMatrix::report()
                 {
                     if (auxiliaryNode->getXDepartment() == "-1")
                     {
-                        myfile << " R" << auxiliaryNode->getYCorporation() << ";";
+                        myfile << " R" << replaceSpaces(auxiliaryNode->getYCorporation()) << ";";
                     }
                     else
                     {
-                        myfile << " C" << auxiliaryNode->getXDepartment();
-                        myfile << "R" << auxiliaryNode->getYCorporation() << ";";
+                        myfile << " C" << replaceSpaces(auxiliaryNode->getXDepartment());
+                        myfile << "R" << replaceSpaces(auxiliaryNode->getYCorporation()) << ";";
                     }
                     auxiliaryNode = auxiliaryNode->getNextNode();
                 }
@@ -388,15 +395,15 @@ void SparseMatrix::report()
                 {
                     if (auxiliaryNode->getYCorporation() == "-1")
                     {
-                        myfile << "C" << auxiliaryNode->getXDepartment();
+                        myfile << "C" << replaceSpaces(auxiliaryNode->getXDepartment());
                     }
                     else
                     {
-                        myfile << "C" << auxiliaryNode->getXDepartment();
-                        myfile << "R" << auxiliaryNode->getYCorporation();
+                        myfile << "C" << replaceSpaces(auxiliaryNode->getXDepartment());
+                        myfile << "R" << replaceSpaces(auxiliaryNode->getYCorporation());
                     }
-                    myfile << " -> C" << auxiliaryNode->getDownNode()->getXDepartment();
-                    myfile << "R" << auxiliaryNode->getDownNode()->getYCorporation() << " [dir=\"both\"];";
+                    myfile << " -> C" << replaceSpaces(auxiliaryNode->getDownNode()->getXDepartment());
+                    myfile << "R" << replaceSpaces(auxiliaryNode->getDownNode()->getYCorporation()) << " [dir=\"both\"];";
                     auxiliaryNode = auxiliaryNode->getDownNode();
                 }
                 auxiliaryColumn = auxiliaryColumn->getNextNode();
