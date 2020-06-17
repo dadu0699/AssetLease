@@ -32,7 +32,7 @@ public:
 
     void readStartNodes(string nickName, string password);
     void readEndNodes();
-    void printAssets(string department, string corporation);
+    string printAssets(string department, string corporation);
 };
 
 #endif // DOUBLELIST_H

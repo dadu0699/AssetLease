@@ -17,6 +17,7 @@ private:
     SparseMatrixNode *insertIntoColumn(SparseMatrixNode *node, SparseMatrixNode *headerRow);
     SparseMatrixNode *createRow(string yCorporation);
     SparseMatrixNode *insertIntoRow(SparseMatrixNode *node, SparseMatrixNode *headerColumn);
+    void generateReport(string name, string content);
 
 public:
     static SparseMatrix *getInstance();

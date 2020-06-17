@@ -29,6 +29,7 @@ private:
     void inOrder(AVLTreeNode *root);
     void inOrderM(AVLTreeNode *root);
     string report(AVLTreeNode *root);
+    string generalReport(AVLTreeNode *root);
     string reportLeftNode(AVLTreeNode *root, int indexParentNode);
     string reportRightNode(AVLTreeNode *root, int indexParentNode);
 
@@ -42,6 +43,7 @@ public:
     void inOrder();
     void inOrderM();
     void report(string user, string department, string corporation);
+    string generalReport(string user, string department, string corporation);
 };
 
 #endif // AVLTREE_H

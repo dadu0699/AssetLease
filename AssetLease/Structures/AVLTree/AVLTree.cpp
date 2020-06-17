@@ -317,6 +317,38 @@ string AVLTree::report(AVLTreeNode *root)
 	return myfile;
 }
 
+string AVLTree::generalReport(AVLTreeNode* root)
+{
+	string myfile;
+	if (root != nullptr)
+	{
+		myfile.append("N" + root->getAsset()->getIdentifier());
+		myfile.append("[label=\"ID: " + root->getAsset()->getIdentifier() + "\\n");
+		myfile.append("Nombre: " + root->getAsset()->getName() + "\\n");
+		myfile.append("Descripcion: " + root->getAsset()->getDescription() + "\"");
+		if (root->getAsset()->getLease())
+		{
+			myfile.append("style=filled color=\"#f8d7da\" fillcolor=\"#f8d7da\", fontcolor = \"#721c57\"");
+		}
+		myfile.append("]; ");
+
+		if (root->getLeftNode() != nullptr)
+		{
+			myfile.append(generalReport(root->getLeftNode()));
+			myfile.append("N" + root->getAsset()->getIdentifier());
+			myfile.append(" -> N" + root->getLeftNode()->getAsset()->getIdentifier() + "; ");
+		}
+
+		if (root->getRightNode() != nullptr)
+		{
+			myfile.append(generalReport(root->getRightNode()));
+			myfile.append("N" + root->getAsset()->getIdentifier());
+			myfile.append(" -> N" + root->getRightNode()->getAsset()->getIdentifier() + "; ");
+		}
+	}
+	return myfile;
+}
+
 string AVLTree::reportLeftNode(AVLTreeNode *root, int indexParentNode)
 {
 	string myfile;
@@ -359,4 +391,10 @@ void AVLTree::report(string user, string department, string corporation)
 	{
 		cout << "Unable to open file";
 	}
+}
+
+string AVLTree::generalReport(string user, string department, string corporation)
+{
+	return "subgraph cluster_" + user + department + corporation + "{label = \"(" + user + ", " 
+		+ department + ", " + corporation + ")\";" + generalReport(root) + "}";
 }

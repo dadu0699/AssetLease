@@ -212,16 +212,18 @@ void DoubleList::readEndNodes()
     cout << endl;
 }
 
-void DoubleList::printAssets(string department, string corporation)
+string DoubleList::printAssets(string department, string corporation)
 {
+    string content = "";
     if (!isEmpty())
     {
         DoubleNode *auxiliaryNode = firstNode;
         while (auxiliaryNode != nullptr)
         {
-            auxiliaryNode->getUser()->getAssetAVL()->report(auxiliaryNode->getUser()->getNickname(), department, corporation);
+            content += auxiliaryNode->getUser()->getAssetAVL()->generalReport(auxiliaryNode->getUser()->getNickname(), department, corporation);
             auxiliaryNode = auxiliaryNode->getNextNode();
         }
         cout << endl;
     }
+    return content;
 }

@@ -176,9 +176,31 @@ void SparseMatrix::printColumnHeaders()
     cout << endl;
 }
 
+void SparseMatrix::generateReport(string name, string content)
+{
+    ofstream myfile(name + ".dot");
+
+    if (myfile.is_open())
+    {
+        myfile << "digraph G { ";
+        myfile << "node[style=filled fillcolor=cornsilk2];";
+        myfile << "graph[label = \"" + name + "\", labelloc=t, fontsize=30];";
+        myfile << content;
+        myfile << " }";
+        myfile.close();
+        system(("dot -Tpng " + name + ".dot -o " + name + ".png").c_str());
+        system((name + ".png").c_str());
+    }
+    else
+    {
+        cout << "Unable to open file";
+    }
+}
+
 void SparseMatrix::printAssetsByDepartment(string department)
 {
     SparseMatrixNode *departmentNode = searchColumn(department);
+    string content = "";
 
     if (departmentNode != nullptr)
     {
@@ -188,16 +210,18 @@ void SparseMatrix::printAssetsByDepartment(string department)
         {
             if (auxiliaryNode->getUserList() != nullptr)
             {
-                auxiliaryNode->getUserList()->printAssets(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
+                content += auxiliaryNode->getUserList()->printAssets(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
             }
             auxiliaryNode = auxiliaryNode->getDownNode();
         }
     }
+    generateReport(department, content);
 }
 
 void SparseMatrix::printAssetsByCorporation(string corporation)
 {
     SparseMatrixNode *departmentNode = searchRow(corporation);
+    string content = "";
 
     if (departmentNode != nullptr)
     {
@@ -207,11 +231,12 @@ void SparseMatrix::printAssetsByCorporation(string corporation)
         {
             if (auxiliaryNode->getUserList() != nullptr)
             {
-                auxiliaryNode->getUserList()->printAssets(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
+                content += auxiliaryNode->getUserList()->printAssets(auxiliaryNode->getXDepartment(), auxiliaryNode->getYCorporation());
             }
             auxiliaryNode = auxiliaryNode->getNextNode();
         }
     }
+    generateReport(corporation, content);
 }
 
 void SparseMatrix::printCatalogue(string nickName, string password)

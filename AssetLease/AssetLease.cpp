@@ -9,7 +9,6 @@ using namespace std;
 int main()
 {
     srand(time(NULL));
-    /*
     SparseMatrix *sparseMatrix;
     User *u1 = new User("dadu", "123", "Didier Dominguez");
     User *u2 = new User("petit", "123", "Mehdi Benjelloun");
@@ -55,7 +54,7 @@ int main()
     u5->getAssetAVL()->insert(new Asset("hielera", "pequenia"));
     u5->getAssetAVL()->insert(new Asset("churraquera", "grande"));
     u5->getAssetAVL()->insert(new Asset("casa", "camping"));
-    */
+
     Menu menu;
     menu.interfaceDesign();
     return 0;
