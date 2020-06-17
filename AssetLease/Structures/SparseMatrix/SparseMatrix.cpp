@@ -415,10 +415,6 @@ void SparseMatrix::report()
             system("sparseMatrix.png");
         }
     }
-    else
-    {
-        cout << "Unable to open file";
-    }
 }
 
 SparseMatrixNode *SparseMatrix::getNode(string xDepartment, string yCorporation)
